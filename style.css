@@ -1,0 +1,121 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+
+:root {
+  --dark-color: #000;
+  --light-color: #fff;
+
+  --accent-color: var(--light-color);
+  --text-color:  var(--light-color);
+  --bg-color: var(--dark-color);
+  --border-color: var(--light-color);
+
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  stroke: var(--text-color);
+}
+
+table {
+  border-spacing: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  animation: FadeIn 0.75s linear;
+}
+
+main {
+  padding: 0 1.2rem;
+}
+
+main, header, footer, section {
+  max-width: 780px;
+  margin: auto;
+}
+
+footer {
+  text-align: center;
+  margin-top: 5em;
+  margin-bottom: 5em;
+}
+
+p {
+  margin: 0.5em 0;
+  line-height: 1.7;
+}
+
+img {
+  max-width: 100%;
+  display: inline-block;
+}
+
+video {
+  display: block;
+}
+
+button, img {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button, select, label, input[type="range"], input[type="checkbox"], details {
+  cursor: pointer;
+}
+
+
+button:disabled {
+  user-select: none;
+  cursor: no-drop;
+}
+
+
+
+
+.label {
+  text-transform: uppercase;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+
+
+.hidden {
+  display: none !important;
+}
+
+
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: Blink 1.5s steps(2, start) infinite;
+}
+
+@keyframes Blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+
+
+::selection {
+  background: var(--text-color);
+  color: var(--bg-color);
+}
