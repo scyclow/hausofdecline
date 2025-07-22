@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Haus of Decline</title>
 
-  <link rel="shortcut icon" type="image/x-icon" href="" id="favicon">
+  <link rel="shortcut icon" type="image/x-icon" href="./favicon.jpg" id="favicon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000" />
 
@@ -33,6 +33,16 @@
 
     * {
       font-family: sans-serif;
+      --text-color:  var(--dark-color);
+      --bg-color: var(--light-color);
+    }
+
+    body {
+      background-image: url("./bg.jpg");
+    }
+
+    #title {
+      filter: invert(1);
     }
 
     a, a:visited {
@@ -42,24 +52,158 @@
     a:hover {
       text-decoration: none;
     }
+
+    header {
+      margin-bottom: 1em;
+    }
+
+
+    img.comic {
+      max-width: 100%;
+      max-height: 65vh;
+      width: auto;
+      height: auto;
+    }
+
+    .comicContainer {
+      display: flex;
+      justify-content: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+    }
+
+
+    header, main, footer {
+      background: var(--bg-color);
+    }
+
+    nav a {
+      font-size: 1.25em;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      margin: 1em auto;
+      width: 320px;
+    }
+
+    button {
+      padding: 0.4em 0.75em;
+      background: var(--text-color);
+      color: var(--bg-color);
+      border: 0;
+      border-radius: 2px;
+    }
+
+    input {
+      padding: 0.25em;
+    }
+
+    .comicControls {
+      display: flex;
+      justify-content: space-around;
+      margin:  auto;
+      max-width: 320px;
+    }
+
+    .comicControls div {
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    .searchBar {
+      text-align: center;
+      margin: 0.5em 0;
+    }
+
+    .mobileNAV {
+      display: none;
+      text-align: center;
+    }
+
+
+    @media (max-width:  640px) {
+      .mobileNAV {
+        display: block;
+      }
+
+      .desktopNAV {
+        display: none;
+
+      }
+
+      nav a {
+        font-size: 0.9em;
+        margin: 0 0.25em;
+      }
+    }
+
   </style>
 </head>
 <body>
   <header>
-    <h1 style="margin: 0.5em 0">Haus of Decline</h1>
-    <nav style="margin: 0.5em 0">
-      <a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">twitter</a>
-      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">patreon</a>
+    <img id="title" src="./Haus_of_Decline_Long.jpg">
+    <nav class="desktopNAV">
+      <a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">Comics</a>
+      <a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">Music</a>
+      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Podcast</a>
+      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Store</a>
+      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Patreon</a>
+      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">About</a>
+    </nav>
+
+    <nav class="mobileNAV">
+      <a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">Comics</a>
+      <a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">Music</a>
+      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Podcast</a>
+      <br>
+      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Store</a>
+      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Patreon</a>
+      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">About</a>
     </nav>
   </header>
-  <main>
 
-    <div style="border: 2px solid; width: 300px; height: 300px; display: flex; justify-content: center; align-items: center;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Under_construction_graphic.gif">
+  <main>
+    <div class="comicContainer">
+      <img class="comic" src="./square-test.jpg">
     </div>
+    <div class="comicControls">
+      <div>↞</div>
+      <div>←</div>
+      <div>🎲</div>
+      <div>→</div>
+      <div>↠</div>
+    </div>
+
+    <div class="searchBar">
+      <input type="" placeholder="Comic #">
+      <button>Search</button>
+    </div>
+
+    <div class="searchBar">
+      <input type="" placeholder="Keyword...">
+      <button>Search</button>
+    </div>
+
   </main>
 
-  <footer>© Haus of Decline 2025</footer>
+  <footer>
+    <div>
+      <div><a href="">twitter</a></div>
+      <div><a href="">bsky</a></div>
+      <div><a href="">instagram</a></div>
+      <div><a href="">youtube</a></div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center;">
+      <div>© Haus of Decline 2025</div>
+      <div>website by <a href="https://steviep.xyz" target="_blank">steviep</a></div>
+    </div>
+  </footer>
 
 </body>
 </html>
