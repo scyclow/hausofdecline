@@ -1,0 +1,26 @@
+{
+  "name": "hausofdecline",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scyclow/hausofdecline.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scyclow/hausofdecline/issues"
+  },
+  "homepage": "https://github.com/scyclow/hausofdecline#readme",
+  "description": "",
+  "dependencies": {
+    "csv-stringify": "^6.6.0",
+    "exif-parser": "^0.1.12"
+  }
+}
