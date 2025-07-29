@@ -335,7 +335,7 @@ function csvToJson(csvString) {
 
   $.id('randomComic').onclick = async () => {
     const data = await loadedData
-    displayComic(parseint(Math.random() & data.length) + 1)
+    displayComic(parseInt(Math.random() * data.length) + 1)
   }
 
   $.id('forwardComic').onclick = async () => {
