@@ -270,9 +270,10 @@ function csvToJson(csvString) {
 
 
   async function getComicData() {
-    const SHEET_ID = '1f8kqjWd4XYfUt-go2lsT-3-_Ex6fVeAKwVjSOvEF52g';
+    // const SHEET_ID = '1f8kqjWd4XYfUt-go2lsT-3-_Ex6fVeAKwVjSOvEF52g';
 
-    return fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`)
+    // return fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`)
+    return fetch(`./GayComicsMetadata.csv`)
       .then(res => res.text())
       .then(csv => {
         return csvToJson(csv)
@@ -286,7 +287,7 @@ function csvToJson(csvString) {
 
     const matchingComic = data.find(d => Number(d.id) === Number(id)) || data[data.length - 1]
 
-    $viewedComic.src = matchingComic.image_url
+    $viewedComic.src = './comics/GayComics/' + matchingComic.file_name
     $viewedComic.alt = matchingComic.description || `Gay Comic #${matchingComic.id}: ${matchingComic.title}`
 
     if (id === data.length) {
@@ -300,8 +301,6 @@ function csvToJson(csvString) {
 
   async function displayComic(id) {
     const data = await loadedData
-
-    console.log(id)
 
     if (id != null) {
       selectComic(id)
@@ -324,7 +323,6 @@ function csvToJson(csvString) {
   }
 
   $.id('backComic').onclick = async () => {
-    console.log('sadas')
     const data = await loadedData
     if (Number(requestedComic) != 0) {
       displayComic(Number(requestedComic) - 1)
