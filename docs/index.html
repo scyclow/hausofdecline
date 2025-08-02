@@ -69,7 +69,7 @@
 
     img.comic {
       max-width: 100%;
-      max-height: 70vh;
+      /*max-height: 70vh;*/
       width: auto;
       height: auto;
     }
@@ -83,10 +83,14 @@
     }
 
     #comicTitle {
-      text-align: right;
       font-size: 1em;
       font-weight: normal;
-      text-align: center;
+      text-align: left;
+    }
+
+    .publication {
+      font-size: 0.75em;
+
     }
     nav {
       display: flex;
@@ -208,30 +212,30 @@
         <div id="forwardComic">→</div>
         <div id="latestComic">↠</div>
       </div>
-      <img id="viewedComic" class="comic">
       <h2 id="comicTitle"></h2>
+      <img id="viewedComic" class="comic">
 
     </div>
 
     <div class="searchBar">
-      <input class="borderimg" type="" placeholder="Comic #">
-      <button>Search</button>
+      <input id="comicIdSearch" class="borderimg" type="number" placeholder="Comic #">
+      <button id="comicIdLookup">Search</button>
     </div>
 
-    <div class="searchBar">
+<!--     <div class="searchBar">
       <input class="borderimg" type="" placeholder="Keyword...">
       <button>Search</button>
-    </div>
+    </div> -->
 
   </main>
 
   <footer>
     <div>
-      <div><a href="">twitter</a></div>
-      <div><a href="">bsky</a></div>
-      <div><a href="">instagram</a></div>
-      <div><a href="">youtube</a></div>
-      <div><a href="">discord</a></div>
+      <div><a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">twitter</a></div>
+      <div><a href="https://hausofdecline.bsky.social" target="_blank" rel="nofollow">bsky</a></div>
+      <div><a href="https://www.instagram.com/hausofdecline/" target="_blank" rel="nofollow">instagram</a></div>
+      <div><a href="https://www.youtube.com/@hausofdecline" target="_blank" rel="nofollow">youtube</a></div>
+      <div><a href="" target="_blank" rel="nofollow">discord</a></div>
     </div>
 
     <div style="display: flex; flex-direction: column; justify-content: center;">
@@ -247,6 +251,8 @@
 
   const $viewedComic = $.id('viewedComic')
   const $comicTitle = $.id('comicTitle')
+  const $comicIdSearch = $.id('comicIdSearch')
+  const $comicIdLookup = $.id('comicIdLookup')
 
   let u = new URL(window.location)
   let requestedComic = u.searchParams.get('comic')
@@ -289,6 +295,10 @@ function csvToJson(csvString) {
 
     $viewedComic.src = './comics/GayComics/' + matchingComic.file_name
     $viewedComic.alt = matchingComic.description || `Gay Comic #${matchingComic.id}: ${matchingComic.title}`
+
+    const publication = new Date(Number(matchingComic.created_at) * 1000)
+
+    $comicTitle.innerHTML = `#${matchingComic.id}: ${matchingComic.title} <span class="publication">(Published: ${publication.getMonth() + 1}/${publication.getDate()}/${publication.getFullYear()})</span>`
 
     if (id === data.length) {
       // TODO disable forward
@@ -346,6 +356,20 @@ function csvToJson(csvString) {
   $.id('latestComic').onclick = async () => {
     const data = await loadedData
     displayComic(data.length)
+  }
+
+
+  $comicIdSearch.onkeydown = e => {
+    if (e.key === 'Enter') {
+      displayComic(e.target.value)
+      $comicIdSearch.value = ''
+    }
+  }
+
+  comicIdLookup.onclick = () => {
+    displayComic($comicIdSearch.value)
+    $comicIdSearch.value = ''
+
   }
 
 
