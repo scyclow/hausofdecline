@@ -31,10 +31,17 @@
 
   <style type="text/css">
 
+
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker');
+
+
     * {
       font-family: sans-serif;
       --text-color:  var(--dark-color);
       --bg-color: var(--light-color);
+
+      font-family: "Permanent Marker", sans-serif;
+      font-optical-sizing: auto;
     }
 
     body {
@@ -83,6 +90,7 @@
     }
 
     #comicTitle {
+      padding-left: 1.1em;
       font-size: 1em;
       font-weight: normal;
       text-align: left;
@@ -125,7 +133,7 @@
       padding: 0.25em;
     }
 
-    .comicControls {
+    .comicControls, .comicControls2 {
       display: flex;
       justify-content: space-around;
       margin:  auto;
@@ -133,9 +141,23 @@
       width: 100%;
     }
 
-    .comicControls div {
+    .comicControls div, .comicControls2 div {
       font-size: 2em;
       cursor: pointer;
+      user-select: none
+    }
+
+/*    .comicControls div:hover, .comicControls2 div:hover {
+      opacity: 0.8;
+    }
+    .comicControls div:active, .comicControls2 div:active {
+      opacity: 0.7;
+    }*/
+
+    .disabled {
+      user-select: none;
+      opacity: 0.25;
+      cursor: unset !important;
     }
 
     .searchBar {
@@ -215,6 +237,14 @@
       <h2 id="comicTitle"></h2>
       <img id="viewedComic" class="comic">
 
+      <div class="comicControls2">
+        <div id="firstComic2">↞</div>
+        <div id="backComic2">←</div>
+        <div id="randomComic2">🎲</div>
+        <div id="forwardComic2">→</div>
+        <div id="latestComic2">↠</div>
+      </div>
+
     </div>
 
     <div class="searchBar">
@@ -258,22 +288,49 @@
   let requestedComic = u.searchParams.get('comic')
 
 
+function parseCsvLine(line) {
+  const result = []
+  let value = ''
+  let inQuotes = false
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i]
+    const nextChar = line[i + 1]
+
+    if (char === '"' && inQuotes && nextChar === '"') {
+      value += '"'
+      i++ // skip escaped quote
+    } else if (char === '"') {
+      inQuotes = !inQuotes
+    } else if (char === ',' && !inQuotes) {
+      result.push(value)
+      value = ''
+    } else {
+      value += char
+    }
+  }
+
+  result.push(value) // last value (after final comma)
+  return result
+}
+
+
 function csvToJson(csvString) {
   const [headerLine, ...lines] = csvString.trim().split('\n')
   const headers = headerLine.split(',').map(h => h.replaceAll('"', '').trim())
 
   const json = lines.map(line => {
-    const values = line.split(',').map(v => v.replaceAll('"', '').trim())
+    const values = parseCsvLine(line)
+    const valuesClean = values.map(v => v.replaceAll('"', '').trim())
     const entry = {}
     headers.forEach((header, i) => {
-      entry[header] = values[i]
+      entry[header] = valuesClean[i]
     })
     return entry
   })
 
   return json
 }
-
 
   async function getComicData() {
     // const SHEET_ID = '1f8kqjWd4XYfUt-go2lsT-3-_Ex6fVeAKwVjSOvEF52g';
@@ -300,12 +357,31 @@ function csvToJson(csvString) {
 
     $comicTitle.innerHTML = `#${matchingComic.id}: ${matchingComic.title} <span class="publication">(Published: ${publication.getMonth() + 1}/${publication.getDate()}/${publication.getFullYear()})</span>`
 
-    if (id === data.length) {
-      // TODO disable forward
+    if (Number(id) === data.length) {
+      $.id('latestComic').classList.add('disabled')
+      $.id('latestComic2').classList.add('disabled')
+      $.id('forwardComic').classList.add('disabled')
+      $.id('forwardComic2').classList.add('disabled')
+    } else {
+      $.id('latestComic').classList.remove('disabled')
+      $.id('latestComic2').classList.remove('disabled')
+      $.id('forwardComic').classList.remove('disabled')
+      $.id('forwardComic2').classList.remove('disabled')
     }
-    if (id === 0) {
-      // TODO disable back
 
+
+    if (Number(id) === 1) {
+      console.log('sdfsdf')
+      // TODO disable back
+      $.id('firstComic').classList.add('disabled')
+      $.id('firstComic2').classList.add('disabled')
+      $.id('backComic').classList.add('disabled')
+      $.id('backComic2').classList.add('disabled')
+    } else {
+      $.id('firstComic').classList.remove('disabled')
+      $.id('firstComic2').classList.remove('disabled')
+      $.id('backComic').classList.remove('disabled')
+      $.id('backComic2').classList.remove('disabled')
     }
   }
 
@@ -328,11 +404,11 @@ function csvToJson(csvString) {
 
   displayComic(requestedComic)
 
-  $.id('firstComic').onclick = async () => {
+
+  const firstComic = async () => {
     displayComic(1)
   }
-
-  $.id('backComic').onclick = async () => {
+  const backComic = async () => {
     const data = await loadedData
     if (Number(requestedComic) != 0) {
       displayComic(Number(requestedComic) - 1)
@@ -340,22 +416,49 @@ function csvToJson(csvString) {
       displayComic(data.length - 1)
     }
   }
-
-  $.id('randomComic').onclick = async () => {
+  const randomComic = async () => {
     const data = await loadedData
     displayComic(parseInt(Math.random() * data.length) + 1)
   }
-
-  $.id('forwardComic').onclick = async () => {
+  const forwardComic = async () => {
     const data = await loadedData
     if (requestedComic != null) {
       displayComic(Number(requestedComic) + 1)
     }
   }
-
-  $.id('latestComic').onclick = async () => {
+  const latestComic = async () => {
     const data = await loadedData
     displayComic(data.length)
+  }
+
+  $.id('firstComic').onclick = firstComic
+  $.id('firstComic2').onclick = () => {
+    firstComic()
+    window.scrollTo(0, 0)
+  }
+
+  $.id('backComic').onclick = backComic
+  $.id('backComic2').onclick = () => {
+    backComic()
+    window.scrollTo(0, 0)
+  }
+
+  $.id('randomComic').onclick = randomComic
+  $.id('randomComic2').onclick = () => {
+    randomComic()
+    window.scrollTo(0, 0)
+  }
+
+  $.id('forwardComic').onclick = forwardComic
+  $.id('forwardComic2').onclick = () => {
+    forwardComic()
+    window.scrollTo(0, 0)
+  }
+
+  $.id('latestComic').onclick = latestComic
+  $.id('latestComic2').onclick = () => {
+    latestComic()
+    window.scrollTo(0, 0)
   }
 
 
@@ -363,12 +466,14 @@ function csvToJson(csvString) {
     if (e.key === 'Enter') {
       displayComic(e.target.value)
       $comicIdSearch.value = ''
+      window.scrollTo(0, 0)
     }
   }
 
   comicIdLookup.onclick = () => {
     displayComic($comicIdSearch.value)
     $comicIdSearch.value = ''
+    window.scrollTo(0, 0)
 
   }
 
