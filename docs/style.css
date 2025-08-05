@@ -6,8 +6,8 @@
 @font-face {
   font-family: 'Font Of Decline';
   src:
-    url('/fonts/Fontofdecline-Regular.otf') format('opentype'),
-    url('/fonts/Fontofdecline-Regular.ttf') format('truetype');
+    url('./fonts/Fontofdecline-Regular.otf') format('opentype'),
+    url('./fonts/Fontofdecline-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
