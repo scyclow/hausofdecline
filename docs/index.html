@@ -108,9 +108,10 @@
 
     #comicTitle {
       padding-left: 1.1em;
-      font-size: 1em;
+      font-size: 1.1em;
       font-weight: normal;
       text-align: left;
+      margin-top:  1em;
     }
 
     .publication {
@@ -139,11 +140,11 @@
     }
 
     button {
-      padding: 0.4em 0.75em;
+/*      padding: 0.4em 0.75em;
       background: var(--text-color);
       color: var(--bg-color);
       border: 0;
-      border-radius: 2px;
+      border-radius: 2px;*/
     }
 
     input {
@@ -156,6 +157,10 @@
       margin:  auto;
       max-width: 320px;
       width: 100%;
+    }
+
+    .comicControls2 {
+      margin-top: 1em;
     }
 
     .comicControls div, .comicControls2 div {
@@ -180,6 +185,9 @@
     .searchBar {
       text-align: center;
       margin: 0.5em 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .mobileNAV {
@@ -209,6 +217,126 @@
         margin: 0 0.25em;
       }
     }
+
+
+    .comicControls > div, .comicControls2 > div {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 40px;
+      width: 40px;
+      height: 40px;
+    }
+
+
+
+    #firstComic, #firstComic2 {
+      background-image: url('./assets/HausIcons/DoubleLeftArrow.jpg');
+    }
+
+    #firstComic:hover, #firstComic2:hover {
+      background-image: url('./assets/HausIcons/DoubleLeftArrowHover.jpg');
+    }
+
+    #firstComic:active, #firstComic2:active {
+      background-image: url('./assets/HausIcons/DoubleLeftArrowClick.jpg');
+    }
+
+
+    #firstComic.disabled, #firstComic2.disabled {
+      background-image: url('./assets/HausIcons/DoubleLeftArrow.jpg') !important;
+    }
+
+
+    #backComic, #backComic2 {
+      background-image: url('./assets/HausIcons/LeftArrow.jpg');
+    }
+
+    #backComic:hover, #backComic2:hover {
+      background-image: url('./assets/HausIcons/LeftArrowHover.jpg');
+    }
+
+    #backComic:active, #backComic2:active {
+      background-image: url('./assets/HausIcons/LeftArrowClick.jpg');
+    }
+
+    #backComic.disabled, #backComic2.disabled {
+      background-image: url('./assets/HausIcons/LeftArrow.jpg') !important;
+    }
+
+
+
+    #randomComic, #randomComic2 {
+      background-image: url('./assets/HausIcons/Dice.jpg');
+    }
+
+    #randomComic:hover, #randomComic2:hover {
+      background-image: url('./assets/HausIcons/DiceHover.jpg');
+    }
+
+    #randomComic:active, #randomComic2:active {
+      background-image: url('./assets/HausIcons/DiceClick.jpg');
+    }
+
+    #randomComic.disabled, #randomComic2.disabled {
+      background-image: url('./assets/HausIcons/Dice.jpg') !important;
+    }
+
+
+    #forwardComic, #forwardComic2 {
+      background-image: url('./assets/HausIcons/RightArrow.jpg');
+    }
+
+    #forwardComic:hover, #forwardComic2:hover {
+      background-image: url('./assets/HausIcons/RightArrowHover.jpg');
+    }
+
+    #forwardComic:active, #forwardComic2:active {
+      background-image: url('./assets/HausIcons/RightArrowClick.jpg');
+    }
+
+    #forwardComic.disabled, #forwardComic2.disabled {
+      background-image: url('./assets/HausIcons/RightArrow.jpg') !important;
+    }
+
+
+
+
+    #latestComic, #latestComic2 {
+      background-image: url('./assets/HausIcons/DoubleRightArrow.jpg');
+    }
+
+    #latestComic:hover, #latestComic2:hover {
+      background-image: url('./assets/HausIcons/DoubleRightArrowHover.jpg');
+    }
+
+    #latestComic:active, #latestComic2:active {
+      background-image: url('./assets/HausIcons/DoubleRightArrowClick.jpg');
+    }
+
+    #latestComic.disabled, #latestComic2.disabled {
+      background-image: url('./assets/HausIcons/DoubleRightArrow.jpg') !important;
+    }
+
+
+    .searchButton {
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100px;
+      height: 50px;
+      background-size: 100px;
+      border: 0;
+      background-image: url('./assets/HausIcons/Search.jpg');
+    }
+
+    .searchButton:hover {
+      background-image: url('./assets/HausIcons/SearchClick.jpg');
+    }
+
+    .searchButton:active {
+      background-image: url('./assets/HausIcons/SearchHover.jpg');
+    }
+
+
 
   </style>
 </head>
@@ -245,28 +373,28 @@
       </noscript>
 
       <div class="comicControls">
-        <div id="firstComic">↞</div>
-        <div id="backComic">←</div>
-        <div id="randomComic">Random</div>
-        <div id="forwardComic">→</div>
-        <div id="latestComic">↠</div>
+        <div id="firstComic"></div>
+        <div id="backComic"></div>
+        <div id="randomComic"></div>
+        <div id="forwardComic"></div>
+        <div id="latestComic"></div>
       </div>
       <h2 id="comicTitle"></h2>
       <img id="viewedComic" class="comic">
 
       <div class="comicControls2">
-        <div id="firstComic2">↞</div>
-        <div id="backComic2">←</div>
-        <div id="randomComic2">Random</div>
-        <div id="forwardComic2">→</div>
-        <div id="latestComic2">↠</div>
+        <div id="firstComic2"></div>
+        <div id="backComic2"></div>
+        <div id="randomComic2"></div>
+        <div id="forwardComic2"></div>
+        <div id="latestComic2"></div>
       </div>
 
     </div>
 
     <div class="searchBar">
       <input id="comicIdSearch" class="borderimg" type="number" placeholder="Comic #">
-      <button id="comicIdLookup">Search</button>
+      <button class="searchButton" id="comicIdLookup"></button>
     </div>
 
 <!--     <div class="searchBar">
@@ -290,6 +418,16 @@
       <div>website by <a href="https://steviep.xyz" target="_blank">steviep</a></div>
     </div>
   </footer>
+
+
+<!--   <div>
+      abcdefghijklmnopqrstuvwxyz
+      ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      1234567890
+      !@#$%^&*()-_=+,./?;"'\|[]{}
+
+
+  </div> -->
 
 </body>
 
@@ -388,7 +526,6 @@ function csvToJson(csvString) {
 
 
     if (Number(id) === 1) {
-      console.log('sdfsdf')
       // TODO disable back
       $.id('firstComic').classList.add('disabled')
       $.id('firstComic2').classList.add('disabled')
