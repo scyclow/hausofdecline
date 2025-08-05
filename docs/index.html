@@ -40,12 +40,24 @@
       --text-color:  var(--dark-color);
       --bg-color: var(--light-color);
 
-      font-family: "Permanent Marker", sans-serif;
+      font-family: "Font Of Decline", sans-serif;
       font-optical-sizing: auto;
     }
 
+
     body {
+      background: var(--bg-color);
+      color: var(--text-color);
       background-image: url("./assets/bg.jpg");
+    }
+
+    body.darkmode * {
+      --accent-color: var(--light-color);
+      --text-color:  var(--light-color);
+      --bg-color: var(--dark-color);
+      --border-color: var(--light-color);
+      color: var(--text-color);
+      /*background-image: url("./assets/bg-invered.jpg");*/
     }
 
     #title {
@@ -53,11 +65,16 @@
       text-align: center;
       line-height: 0;
     }
+
     #title img {
       filter: invert(1) contrast(2);
       max-height: 120px;
       width: auto;
       height: auto;
+    }
+    .darkmode #title img {
+      filter:  contrast(2);
+
     }
 
     a, a:visited {
@@ -230,7 +247,7 @@
       <div class="comicControls">
         <div id="firstComic">↞</div>
         <div id="backComic">←</div>
-        <div id="randomComic">🎲</div>
+        <div id="randomComic">Random</div>
         <div id="forwardComic">→</div>
         <div id="latestComic">↠</div>
       </div>
@@ -240,7 +257,7 @@
       <div class="comicControls2">
         <div id="firstComic2">↞</div>
         <div id="backComic2">←</div>
-        <div id="randomComic2">🎲</div>
+        <div id="randomComic2">Random</div>
         <div id="forwardComic2">→</div>
         <div id="latestComic2">↠</div>
       </div>

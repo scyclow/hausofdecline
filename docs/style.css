@@ -1,6 +1,16 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');*/
 
+
+
+@font-face {
+  font-family: 'Font Of Decline';
+  src:
+    url('/fonts/Fontofdecline-Regular.otf') format('opentype'),
+    url('/fonts/Fontofdecline-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   --dark-color: #000;
