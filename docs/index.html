@@ -36,11 +36,12 @@
 
 
     * {
-      font-family: sans-serif;
       --text-color:  var(--dark-color);
       --bg-color: var(--light-color);
 
       font-family: "Font Of Decline", sans-serif;
+      font-weight: bold;
+      text-shadow: 0.1px 0.1px 0 #000, -0.1px 0.1px 0 #000, 0.1px -0.1px 0 #000, -0.1px -0.1px 0 #000;
       font-optical-sizing: auto;
     }
 
@@ -135,8 +136,10 @@
     footer {
       display: flex;
       justify-content: space-between;
-      margin: 1em auto;
-      width: 320px;
+      margin: 4em auto;
+      max-width: 400px;
+      padding: 1em;
+      font-size: 1.25em;
     }
 
     button {
@@ -161,6 +164,7 @@
 
     .comicControls2 {
       margin-top: 1em;
+      margin-bottom: 1em;
     }
 
     .comicControls div, .comicControls2 div {
@@ -169,25 +173,10 @@
       user-select: none
     }
 
-/*    .comicControls div:hover, .comicControls2 div:hover {
-      opacity: 0.8;
-    }
-    .comicControls div:active, .comicControls2 div:active {
-      opacity: 0.7;
-    }*/
-
     .disabled {
       user-select: none;
       opacity: 0.25;
       cursor: unset !important;
-    }
-
-    .searchBar {
-      text-align: center;
-      margin: 0.5em 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .mobileNAV {
@@ -201,23 +190,64 @@
     }
 
 
+    .searchBar {
+      text-align: center;
+      margin: 1em 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #comicIdSearch {
+      border-width: 14px;
+      font-size: 1.25em;
+    }
+
+    .socials a {
+      display: block;
+      margin: 0.5em 0;
+    }
+
 
     @media (max-width:  640px) {
+
+      body {
+        background: none;
+      }
+
       .mobileNAV {
         display: block;
       }
 
       .desktopNAV {
         display: none;
-
       }
 
+
       nav a {
-        font-size: 0.9em;
-        margin: 0 0.25em;
+        /*font-size: 0.9em;*/
+        display: inline-block;
+        margin: 0.1em 0.5em;
+      }
+
+      footer {
+        font-size: 1em;
+      }
+
+      .comicContainer {
+        margin-top: 1.5em;
+      }
+
+      .publication {
+        display: block;
       }
     }
 
+    @media (max-width:  420px) {
+      #comicIdSearch {
+        font-size: 0.9em;
+      }
+    }
 
     .comicControls > div, .comicControls2 > div {
       background-repeat: no-repeat;
@@ -232,16 +262,12 @@
     #firstComic, #firstComic2 {
       background-image: url('./assets/HausIcons/DoubleLeftArrow.jpg');
     }
-
     #firstComic:hover, #firstComic2:hover {
       background-image: url('./assets/HausIcons/DoubleLeftArrowHover.jpg');
     }
-
     #firstComic:active, #firstComic2:active {
       background-image: url('./assets/HausIcons/DoubleLeftArrowClick.jpg');
     }
-
-
     #firstComic.disabled, #firstComic2.disabled {
       background-image: url('./assets/HausIcons/DoubleLeftArrow.jpg') !important;
     }
@@ -250,15 +276,12 @@
     #backComic, #backComic2 {
       background-image: url('./assets/HausIcons/LeftArrow.jpg');
     }
-
     #backComic:hover, #backComic2:hover {
       background-image: url('./assets/HausIcons/LeftArrowHover.jpg');
     }
-
     #backComic:active, #backComic2:active {
       background-image: url('./assets/HausIcons/LeftArrowClick.jpg');
     }
-
     #backComic.disabled, #backComic2.disabled {
       background-image: url('./assets/HausIcons/LeftArrow.jpg') !important;
     }
@@ -268,15 +291,12 @@
     #randomComic, #randomComic2 {
       background-image: url('./assets/HausIcons/Dice.jpg');
     }
-
     #randomComic:hover, #randomComic2:hover {
       background-image: url('./assets/HausIcons/DiceHover.jpg');
     }
-
     #randomComic:active, #randomComic2:active {
       background-image: url('./assets/HausIcons/DiceClick.jpg');
     }
-
     #randomComic.disabled, #randomComic2.disabled {
       background-image: url('./assets/HausIcons/Dice.jpg') !important;
     }
@@ -285,15 +305,12 @@
     #forwardComic, #forwardComic2 {
       background-image: url('./assets/HausIcons/RightArrow.jpg');
     }
-
     #forwardComic:hover, #forwardComic2:hover {
       background-image: url('./assets/HausIcons/RightArrowHover.jpg');
     }
-
     #forwardComic:active, #forwardComic2:active {
       background-image: url('./assets/HausIcons/RightArrowClick.jpg');
     }
-
     #forwardComic.disabled, #forwardComic2.disabled {
       background-image: url('./assets/HausIcons/RightArrow.jpg') !important;
     }
@@ -304,15 +321,12 @@
     #latestComic, #latestComic2 {
       background-image: url('./assets/HausIcons/DoubleRightArrow.jpg');
     }
-
     #latestComic:hover, #latestComic2:hover {
       background-image: url('./assets/HausIcons/DoubleRightArrowHover.jpg');
     }
-
     #latestComic:active, #latestComic2:active {
       background-image: url('./assets/HausIcons/DoubleRightArrowClick.jpg');
     }
-
     #latestComic.disabled, #latestComic2.disabled {
       background-image: url('./assets/HausIcons/DoubleRightArrow.jpg') !important;
     }
@@ -405,17 +419,17 @@
   </main>
 
   <footer>
-    <div>
-      <div><a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">twitter</a></div>
-      <div><a href="https://hausofdecline.bsky.social" target="_blank" rel="nofollow">bsky</a></div>
-      <div><a href="https://www.instagram.com/hausofdecline/" target="_blank" rel="nofollow">instagram</a></div>
-      <div><a href="https://www.youtube.com/@hausofdecline" target="_blank" rel="nofollow">youtube</a></div>
-      <div><a href="" target="_blank" rel="nofollow">discord</a></div>
+    <div class="socials">
+      <a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">twitter</a>
+      <a href="https://hausofdecline.bsky.social" target="_blank" rel="nofollow">bsky</a>
+      <a href="https://www.instagram.com/hausofdecline/" target="_blank" rel="nofollow">instagram</a>
+      <a href="https://www.youtube.com/@hausofdecline" target="_blank" rel="nofollow">youtube</a>
+      <a href="" target="_blank" rel="nofollow">discord</a>
     </div>
 
     <div style="display: flex; flex-direction: column; justify-content: center;">
       <div>© Haus of Decline 2025</div>
-      <div>website by <a href="https://steviep.xyz" target="_blank">steviep</a></div>
+      <div style="margin-top: 0.5em;">website by <a href="https://steviep.xyz" target="_blank">steviep</a></div>
     </div>
   </footer>
 
@@ -585,34 +599,41 @@ function csvToJson(csvString) {
     displayComic(data.length)
   }
 
+  function scrollToComic() {
+    document.querySelector('#comicTitle').scrollIntoView({
+      behavior: 'smooth', // or 'auto'
+      block: 'start',     // 'start', 'center', 'end', or 'nearest'
+    });
+  }
+
   $.id('firstComic').onclick = firstComic
   $.id('firstComic2').onclick = () => {
     firstComic()
-    window.scrollTo(0, 0)
+    scrollToComic()
   }
 
   $.id('backComic').onclick = backComic
   $.id('backComic2').onclick = () => {
     backComic()
-    window.scrollTo(0, 0)
+    scrollToComic()
   }
 
   $.id('randomComic').onclick = randomComic
   $.id('randomComic2').onclick = () => {
     randomComic()
-    window.scrollTo(0, 0)
+    scrollToComic()
   }
 
   $.id('forwardComic').onclick = forwardComic
   $.id('forwardComic2').onclick = () => {
     forwardComic()
-    window.scrollTo(0, 0)
+    scrollToComic()
   }
 
   $.id('latestComic').onclick = latestComic
   $.id('latestComic2').onclick = () => {
     latestComic()
-    window.scrollTo(0, 0)
+    scrollToComic()
   }
 
 
@@ -620,14 +641,14 @@ function csvToJson(csvString) {
     if (e.key === 'Enter') {
       displayComic(e.target.value)
       $comicIdSearch.value = ''
-      window.scrollTo(0, 0)
+      scrollToComic()
     }
   }
 
   comicIdLookup.onclick = () => {
     displayComic($comicIdSearch.value)
     $comicIdSearch.value = ''
-    window.scrollTo(0, 0)
+    scrollToComic()
 
   }
 
