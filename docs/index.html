@@ -117,6 +117,7 @@
 
     .publication {
       font-size: 0.75em;
+      font-style: italic;
 
     }
     nav {
@@ -358,12 +359,12 @@
   <header>
     <!-- <img id="title" src="./Haus_of_Decline_Long.jpg"> -->
     <h1 id="title">
-      <img  src="./assets/Haus_of_Decline_Cropped.jpeg" alt="HAUS OF DECLINE">
+      <a href="./"><img  src="./assets/Haus_of_Decline_Cropped.jpeg" alt="HAUS OF DECLINE"></a>
     </h1>
     <nav class="desktopNAV">
       <a href="./comics" >Comics</a>
-      <a href="https://anti-spectacular.bandcamp.com/" target="_blank" rel="nofollow">Music</a>
-      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Podcast</a>
+      <a href="./music" >Music</a>
+      <a href="./podcast" >Podcast</a>
       <a href="https://hausofdecline.bigcartel.com/" target="_blank" rel="nofollow">Store</a>
       <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Patreon</a>
       <a href="./about">About</a>
@@ -371,8 +372,8 @@
 
     <nav class="mobileNAV">
       <a href="./comics" >Comics</a>
-      <a href="https://anti-spectacular.bandcamp.com/" target="_blank" rel="nofollow">Music</a>
-      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Podcast</a>
+      <a href="./music" >Music</a>
+      <a href="./podcast" >Podcast</a>
       <br>
       <a href="https://hausofdecline.bigcartel.com/" target="_blank" rel="nofollow">Store</a>
       <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Patreon</a>
@@ -540,7 +541,6 @@ function csvToJson(csvString) {
 
 
     if (Number(id) === 1) {
-      // TODO disable back
       $.id('firstComic').classList.add('disabled')
       $.id('firstComic2').classList.add('disabled')
       $.id('backComic').classList.add('disabled')
