@@ -8,23 +8,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000" />
 
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <meta name="description" content="Haus of Decline is the name of the collective projects of Ms. Alex Hood. This encompasses comics, a podcast, her music, a live series and whatever else she may care to incorporate into this scheme.">
+  <meta name="keywords" content="Haus of Decline, Alex Hood, Webcomic, Comic, Online Artist, Podcast, Music, Trans Webcomic, Trans Comic, Gay Webcomic, Trans comic artist, Trans musician, musician, Toronto comic, Toronto webcomic, Dick comic, Dick comics, Penis comic, Penis comics, Toronto, Canada, Body Horror, Rock and Roll, Punk,Hip Hop, Indie Comic, Alex Hodd,Trans punk, trans hip hop, trans rap, trans podcast">
 
-  <meta name="twitter:image" content="">
-  <meta name="twitter:image:alt" content="">
+  <meta name="twitter:image" content="https://hausofdecline.ca/assets/thumbnail.jpg">
+  <meta name="twitter:image:alt" content="HausOfDecline">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:creator" content="@hausofdecline">
   <meta name="twitter:site" content="@hausofdecline">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:description" content="Haus of Decline is the name of the collective projects of Ms. Alex Hood. This encompasses comics, a podcast, her music, a live series and whatever else she may care to incorporate into this scheme.">
 
-  <meta name="og:image" property="og:image" content="">
-  <meta name="og:image:alt" content="">
+  <meta name="og:image" property="og:image" content="https://hausofdecline.ca/assets/thumbnail.jpg">
+  <meta name="og:image:alt" content="HausOfDecline">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="">
-  <meta property="og:title" content="">
-  <meta property="og:site_name" content="">
-  <meta property="og:description" content="">
+  <meta property="og:url" content="https://hausofdecline.ca">
+  <meta property="og:title" content="Haus of Decline">
+  <meta property="og:site_name" content="Haus of Decline">
+  <meta property="og:description" content="Haus of Decline is the name of the collective projects of Ms. Alex Hood. This encompasses comics, a podcast, her music, a live series and whatever else she may care to incorporate into this scheme.">
 
 
   <link rel="stylesheet" type="text/css" href="./style.css">
@@ -367,7 +367,6 @@
       <a href="./podcast" >Podcast</a>
       <a href="https://hausofdecline.bigcartel.com/" target="_blank" rel="nofollow">Store</a>
       <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Patreon</a>
-      <a href="./about">About</a>
     </nav>
 
     <nav class="mobileNAV">
@@ -377,7 +376,6 @@
       <br>
       <a href="https://hausofdecline.bigcartel.com/" target="_blank" rel="nofollow">Store</a>
       <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Patreon</a>
-      <a href="./about">About</a>
     </nav>
   </header>
 
@@ -428,6 +426,8 @@
       <a href="https://www.instagram.com/hausofdecline/" target="_blank" rel="nofollow">instagram</a>
       <a href="https://www.youtube.com/@hausofdecline" target="_blank" rel="nofollow">youtube</a>
       <a href="https://discord.gg/twvNwhqNer" target="_blank" rel="nofollow">discord</a>
+      <a href="./rss" target="_blank" rel="nofollow">rss</a>
+
     </div>
 
     <div style="display: flex; flex-direction: column; justify-content: center;">
@@ -435,17 +435,6 @@
       <div style="margin-top: 0.5em;">website by <a href="https://steviep.xyz" target="_blank">steviep</a></div>
     </div>
   </footer>
-
-
-<!--   <div>
-      abcdefghijklmnopqrstuvwxyz
-      ABCDEFGHIJKLMNOPQRSTUVWXYZ
-      1234567890
-      !@#$%^&*()-_=+,./?;"'\|[]{}
-
-
-  </div> -->
-
 </body>
 
 <script type="module">
@@ -521,18 +510,26 @@ function csvToJson(csvString) {
   async function selectComic(id) {
     const data = await loadedData
 
-    const matchingComic = data.find(d => Number(d.id) === Number(id)) || data[data.length - 1]
+    const matchingComic = data.find(d => Number(d.id) === Number(id)) || {
+      is404: true,
+      file_name: '404.jpg',
+      description: 'ERROR: COMIC NOT FOUND'
+    }
 
-    $viewedComic.src = './comics/GayComics/' + matchingComic.file_name
-    $viewedComicLink.href = './comics/GayComics/' + matchingComic.file_name
+    const baseRoute = (matchingComic.is404 ? './assets/' : './comics/GayComics/')
+
+    $viewedComic.src = baseRoute + matchingComic.file_name
+    $viewedComicLink.href = baseRoute + matchingComic.file_name
     $viewedComic.alt = matchingComic.description || `Gay Comic #${matchingComic.id}: ${matchingComic.title}`
     $viewedComic.title = matchingComic.description || `Gay Comic #${matchingComic.id}: ${matchingComic.title}`
 
     const publication = new Date(Number(matchingComic.created_at) * 1000)
 
-    $comicTitle.innerHTML = `#${matchingComic.id}: ${matchingComic.title} <span class="publication">(Published: ${publication.getMonth() + 1}/${publication.getDate()}/${publication.getFullYear()})</span>`
+    $comicTitle.innerHTML = matchingComic.is404
+      ? matchingComic.description
+      : `#${matchingComic.id}: ${matchingComic.title} <span class="publication">(Published: ${publication.getMonth() + 1}/${publication.getDate()}/${publication.getFullYear()})</span>`
 
-    if (Number(id) === data.length) {
+    if (Number(id) === data.length || matchingComic.is404) {
       $.id('latestComic').classList.add('disabled')
       $.id('latestComic2').classList.add('disabled')
       $.id('forwardComic').classList.add('disabled')
@@ -545,7 +542,7 @@ function csvToJson(csvString) {
     }
 
 
-    if (Number(id) === 1) {
+    if (Number(id) === 1 || matchingComic.is404) {
       $.id('firstComic').classList.add('disabled')
       $.id('firstComic2').classList.add('disabled')
       $.id('backComic').classList.add('disabled')

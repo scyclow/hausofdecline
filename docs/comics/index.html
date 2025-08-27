@@ -263,9 +263,19 @@
       margin-top: 4em;
     }
 
-    h2 {
+    h1, h2 {
       margin: 0.5em auto;
       text-align: center;
+    }
+
+    .comicButton {
+      display: block;
+      padding: 2em 0;
+    }
+
+    .comicButton:hover {
+      filter: invert(1);
+      color: #fff;
     }
 
 
@@ -298,7 +308,20 @@
 
   <main>
 
-    <img src="/assets/404.jpg" alt="404">
+    <h1>Comics</h1>
+
+    <a class="comicButton" href="/comics/GayComics">
+      <img src="/assets/GayComicsButton.jpg">
+      View Comics
+    </a>
+    <a class="comicButton" href="/comics/Together">
+      <img src="/assets/TogetherButton.jpg">
+      View Comics
+    </a>
+    <a class="comicButton" href="/comics/GlowOfTheMoon">
+      <img src="/assets/InThisWorkButton.jpg">
+      View Comics
+    </a>
 
   </main>
 
