@@ -8,23 +8,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000" />
 
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <meta name="description" content="Haus of Decline is the name of the collective projects of Ms. Alex Hood. This encompasses comics, a podcast, her music, a live series and whatever else she may care to incorporate into this scheme.">
+  <meta name="keywords" content="Haus of Decline, Alex Hood, Webcomic, Comic, Online Artist, Podcast, Music, Trans Webcomic, Trans Comic, Gay Webcomic, Trans comic artist, Trans musician, musician, Toronto comic, Toronto webcomic, Dick comic, Dick comics, Penis comic, Penis comics, Toronto, Canada, Body Horror, Rock and Roll, Punk,Hip Hop, Indie Comic, Alex Hodd,Trans punk, trans hip hop, trans rap, trans podcast">
 
-  <meta name="twitter:image" content="">
-  <meta name="twitter:image:alt" content="">
+  <meta name="twitter:image" content="https://hausofdecline.ca/assets/thumbnail.jpg">
+  <meta name="twitter:image:alt" content="HausOfDecline">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:creator" content="@hausofdecline">
   <meta name="twitter:site" content="@hausofdecline">
-  <meta property="twitter:description" content="">
+  <meta property="twitter:description" content="Haus of Decline is the name of the collective projects of Ms. Alex Hood. This encompasses comics, a podcast, her music, a live series and whatever else she may care to incorporate into this scheme.">
 
-  <meta name="og:image" property="og:image" content="">
-  <meta name="og:image:alt" content="">
+  <meta name="og:image" property="og:image" content="https://hausofdecline.ca/assets/thumbnail.jpg">
+  <meta name="og:image:alt" content="HausOfDecline">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="">
-  <meta property="og:title" content="">
-  <meta property="og:site_name" content="">
-  <meta property="og:description" content="">
+  <meta property="og:url" content="https://hausofdecline.ca">
+  <meta property="og:title" content="Haus of Decline">
+  <meta property="og:site_name" content="Haus of Decline">
+  <meta property="og:description" content="Haus of Decline is the name of the collective projects of Ms. Alex Hood. This encompasses comics, a podcast, her music, a live series and whatever else she may care to incorporate into this scheme.">
 
 
   <link rel="stylesheet" type="text/css" href="./style.css">
@@ -117,6 +117,7 @@
 
     .publication {
       font-size: 0.75em;
+      font-style: italic;
 
     }
     nav {
@@ -358,25 +359,23 @@
   <header>
     <!-- <img id="title" src="./Haus_of_Decline_Long.jpg"> -->
     <h1 id="title">
-      <img  src="./assets/Haus_of_Decline_Cropped.jpeg" alt="HAUS OF DECLINE">
+      <a href="./"><img  src="./assets/Haus_of_Decline_Cropped.jpeg" alt="HAUS OF DECLINE"></a>
     </h1>
     <nav class="desktopNAV">
       <a href="./comics" >Comics</a>
-      <a href="https://anti-spectacular.bandcamp.com/" target="_blank" rel="nofollow">Music</a>
-      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Podcast</a>
+      <a href="./music" >Music</a>
+      <a href="./podcast" >Podcast</a>
       <a href="https://hausofdecline.bigcartel.com/" target="_blank" rel="nofollow">Store</a>
       <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Patreon</a>
-      <a href="./about">About</a>
     </nav>
 
     <nav class="mobileNAV">
       <a href="./comics" >Comics</a>
-      <a href="https://anti-spectacular.bandcamp.com/" target="_blank" rel="nofollow">Music</a>
-      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Podcast</a>
+      <a href="./music" >Music</a>
+      <a href="./podcast" >Podcast</a>
       <br>
       <a href="https://hausofdecline.bigcartel.com/" target="_blank" rel="nofollow">Store</a>
       <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Patreon</a>
-      <a href="./about">About</a>
     </nav>
   </header>
 
@@ -394,7 +393,9 @@
         <div id="latestComic"></div>
       </div>
       <h2 id="comicTitle"></h2>
-      <img id="viewedComic" class="comic">
+      <a id="viewedComicLink" target="_blank">
+        <img id="viewedComic" class="comic">
+      </a>
 
       <div class="comicControls2">
         <div id="firstComic2"></div>
@@ -424,30 +425,23 @@
       <a href="https://hausofdecline.bsky.social" target="_blank" rel="nofollow">bsky</a>
       <a href="https://www.instagram.com/hausofdecline/" target="_blank" rel="nofollow">instagram</a>
       <a href="https://www.youtube.com/@hausofdecline" target="_blank" rel="nofollow">youtube</a>
-      <a href="" target="_blank" rel="nofollow">discord</a>
+      <a href="https://discord.gg/twvNwhqNer" target="_blank" rel="nofollow">discord</a>
+      <a href="./rss" target="_blank" rel="nofollow">rss</a>
+
     </div>
 
     <div style="display: flex; flex-direction: column; justify-content: center;">
-      <div>© Haus of Decline 2025</div>
+      <div><span style="font-size: 1.5em; display: inline-block; transform: translateY(0.15em);">©</span> Haus of Decline 2025</div>
       <div style="margin-top: 0.5em;">website by <a href="https://steviep.xyz" target="_blank">steviep</a></div>
     </div>
   </footer>
-
-
-<!--   <div>
-      abcdefghijklmnopqrstuvwxyz
-      ABCDEFGHIJKLMNOPQRSTUVWXYZ
-      1234567890
-      !@#$%^&*()-_=+,./?;"'\|[]{}
-
-
-  </div> -->
-
 </body>
 
 <script type="module">
   import { $ } from './$.js'
+  import { getComicData } from './data.js'
 
+  const $viewedComicLink = $.id('viewedComicLink')
   const $viewedComic = $.id('viewedComic')
   const $comicTitle = $.id('comicTitle')
   const $comicIdSearch = $.id('comicIdSearch')
@@ -457,76 +451,32 @@
   let requestedComic = u.searchParams.get('comic')
 
 
-function parseCsvLine(line) {
-  const result = []
-  let value = ''
-  let inQuotes = false
-
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i]
-    const nextChar = line[i + 1]
-
-    if (char === '"' && inQuotes && nextChar === '"') {
-      value += '"'
-      i++ // skip escaped quote
-    } else if (char === '"') {
-      inQuotes = !inQuotes
-    } else if (char === ',' && !inQuotes) {
-      result.push(value)
-      value = ''
-    } else {
-      value += char
-    }
-  }
-
-  result.push(value) // last value (after final comma)
-  return result
-}
-
-
-function csvToJson(csvString) {
-  const [headerLine, ...lines] = csvString.trim().split('\n')
-  const headers = headerLine.split(',').map(h => h.replaceAll('"', '').trim())
-
-  const json = lines.map(line => {
-    const values = parseCsvLine(line)
-    const valuesClean = values.map(v => v.replaceAll('"', '').trim())
-    const entry = {}
-    headers.forEach((header, i) => {
-      entry[header] = valuesClean[i]
-    })
-    return entry
-  })
-
-  return json
-}
-
-  async function getComicData() {
-    // const SHEET_ID = '1f8kqjWd4XYfUt-go2lsT-3-_Ex6fVeAKwVjSOvEF52g';
-
-    // return fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`)
-    return fetch(`./GayComicsMetadata.csv`)
-      .then(res => res.text())
-      .then(csv => {
-        return csvToJson(csv)
-      })
-  }
 
   const loadedData = getComicData()
 
   async function selectComic(id) {
     const data = await loadedData
 
-    const matchingComic = data.find(d => Number(d.id) === Number(id)) || data[data.length - 1]
+    const matchingComic = data.find(d => Number(d.id) === Number(id)) || {
+      is404: true,
+      file_name: '404.jpg',
+      description: 'ERROR: COMIC NOT FOUND'
+    }
 
-    $viewedComic.src = './comics/GayComics/' + matchingComic.file_name
+    const baseRoute = (matchingComic.is404 ? './assets/' : './comics/GayComics/')
+
+    $viewedComic.src = baseRoute + matchingComic.file_name
+    $viewedComicLink.href = baseRoute + matchingComic.file_name
     $viewedComic.alt = matchingComic.description || `Gay Comic #${matchingComic.id}: ${matchingComic.title}`
+    $viewedComic.title = matchingComic.description || `Gay Comic #${matchingComic.id}: ${matchingComic.title}`
 
     const publication = new Date(Number(matchingComic.created_at) * 1000)
 
-    $comicTitle.innerHTML = `#${matchingComic.id}: ${matchingComic.title} <span class="publication">(Published: ${publication.getMonth() + 1}/${publication.getDate()}/${publication.getFullYear()})</span>`
+    $comicTitle.innerHTML = matchingComic.is404
+      ? matchingComic.description
+      : `#${matchingComic.id}: ${matchingComic.title} <span class="publication">(Published: ${publication.getMonth() + 1}/${publication.getDate()}/${publication.getFullYear()})</span>`
 
-    if (Number(id) === data.length) {
+    if (Number(id) === data.length || matchingComic.is404) {
       $.id('latestComic').classList.add('disabled')
       $.id('latestComic2').classList.add('disabled')
       $.id('forwardComic').classList.add('disabled')
@@ -539,8 +489,7 @@ function csvToJson(csvString) {
     }
 
 
-    if (Number(id) === 1) {
-      // TODO disable back
+    if (Number(id) === 1 || matchingComic.is404) {
       $.id('firstComic').classList.add('disabled')
       $.id('firstComic2').classList.add('disabled')
       $.id('backComic').classList.add('disabled')

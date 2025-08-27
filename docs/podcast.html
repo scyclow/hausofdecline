@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Haus of Decline</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="./favicon.jpg" id="favicon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000" />
+
+  <meta name="description" content="Haus of Decline is the name of the collective projects of Ms. Alex Hood. This encompasses comics, a podcast, her music, a live series and whatever else she may care to incorporate into this scheme.">
+  <meta name="keywords" content="Haus of Decline, Alex Hood, Webcomic, Comic, Online Artist, Podcast, Music, Trans Webcomic, Trans Comic, Gay Webcomic, Trans comic artist, Trans musician, musician, Toronto comic, Toronto webcomic, Dick comic, Dick comics, Penis comic, Penis comics, Toronto, Canada, Body Horror, Rock and Roll, Punk,Hip Hop, Indie Comic, Alex Hodd,Trans punk, trans hip hop, trans rap, trans podcast">
+
+  <meta name="twitter:image" content="https://hausofdecline.ca/assets/thumbnail.jpg">
+  <meta name="twitter:image:alt" content="HausOfDecline">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@hausofdecline">
+  <meta name="twitter:site" content="@hausofdecline">
+  <meta property="twitter:description" content="Haus of Decline is the name of the collective projects of Ms. Alex Hood. This encompasses comics, a podcast, her music, a live series and whatever else she may care to incorporate into this scheme.">
+
+  <meta name="og:image" property="og:image" content="https://hausofdecline.ca/assets/thumbnail.jpg">
+  <meta name="og:image:alt" content="HausOfDecline">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hausofdecline.ca">
+  <meta property="og:title" content="Haus of Decline">
+  <meta property="og:site_name" content="Haus of Decline">
+  <meta property="og:description" content="Haus of Decline is the name of the collective projects of Ms. Alex Hood. This encompasses comics, a podcast, her music, a live series and whatever else she may care to incorporate into this scheme.">
+
+
+  <link rel="stylesheet" type="text/css" href="./style.css">
+
+  <style type="text/css">
+
+
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker');
+
+
+    * {
+      --text-color:  var(--dark-color);
+      --bg-color: var(--light-color);
+
+      font-family: "Font Of Decline", sans-serif;
+      font-weight: bold;
+      text-shadow: 0.1px 0.1px 0 #000, -0.1px 0.1px 0 #000, 0.1px -0.1px 0 #000, -0.1px -0.1px 0 #000;
+      font-optical-sizing: auto;
+    }
+
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      background-image: url("./assets/bg.jpg");
+    }
+
+    body.darkmode * {
+      --accent-color: var(--light-color);
+      --text-color:  var(--light-color);
+      --bg-color: var(--dark-color);
+      --border-color: var(--light-color);
+      color: var(--text-color);
+      /*background-image: url("./assets/bg-invered.jpg");*/
+    }
+
+    #title {
+      padding: 0.5em;
+      text-align: center;
+      line-height: 0;
+    }
+
+    #title img {
+      filter: invert(1) contrast(2);
+      max-height: 120px;
+      width: auto;
+      height: auto;
+    }
+    .darkmode #title img {
+      filter:  contrast(2);
+
+    }
+
+    a, a:visited {
+      color: var(--text-color);
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    header {
+      margin-bottom: 1em;
+    }
+
+    main {
+      margin-top: 4em;
+    }
+
+
+    img.comic {
+      max-width: 100%;
+      /*max-height: 70vh;*/
+      width: auto;
+      height: auto;
+    }
+
+    .comicContainer {
+      margin-top: 2.5em;
+      display: flex;
+      justify-content: center;
+      /*align-items: center;*/
+      flex-direction: column;
+    }
+
+    #comicTitle {
+      padding-left: 1.1em;
+      font-size: 1.1em;
+      font-weight: normal;
+      text-align: left;
+      margin-top:  1em;
+    }
+
+    .publication {
+      font-size: 0.75em;
+      font-style: italic;
+
+    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+    }
+
+
+    header, main, footer {
+      background: var(--bg-color);
+    }
+
+    nav a {
+      font-size: 1.25em;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      margin: 2em auto;
+      max-width: 400px;
+      padding: 1em;
+      font-size: 1.25em;
+    }
+
+    button {
+/*      padding: 0.4em 0.75em;
+      background: var(--text-color);
+      color: var(--bg-color);
+      border: 0;
+      border-radius: 2px;*/
+    }
+
+    input {
+      padding: 0.25em;
+    }
+
+    .comicControls, .comicControls2 {
+      display: flex;
+      justify-content: space-around;
+      margin:  auto;
+      max-width: 320px;
+      width: 100%;
+    }
+
+    .comicControls2 {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+
+    .comicControls div, .comicControls2 div {
+      font-size: 2em;
+      cursor: pointer;
+      user-select: none
+    }
+
+    .disabled {
+      user-select: none;
+      opacity: 0.25;
+      cursor: unset !important;
+    }
+
+    .mobileNAV {
+      display: none;
+      text-align: center;
+    }
+
+    .borderimg {
+      border: 20px solid transparent;
+      border-image: url('./assets/border-image.png') 60 round;
+    }
+
+
+    .searchBar {
+      text-align: center;
+      margin: 1em 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #comicIdSearch {
+      border-width: 14px;
+      font-size: 1.25em;
+    }
+
+    .socials a {
+      display: block;
+      margin: 0.5em 0;
+    }
+
+
+    @media (max-width:  640px) {
+
+      body {
+        background: none;
+      }
+
+      .mobileNAV {
+        display: block;
+      }
+
+      .desktopNAV {
+        display: none;
+      }
+
+
+      nav a {
+        /*font-size: 0.9em;*/
+        display: inline-block;
+        margin: 0.1em 0.5em;
+      }
+
+      footer {
+        font-size: 1em;
+      }
+
+      .comicContainer {
+        margin-top: 1.5em;
+      }
+
+      .publication {
+        display: block;
+      }
+    }
+
+    h1, h2 {
+      margin: 0.5em auto;
+      text-align: center;
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <!-- <img id="title" src="./Haus_of_Decline_Long.jpg"> -->
+    <h1 id="title">
+      <a href="./"><img  src="./assets/Haus_of_Decline_Cropped.jpeg" alt="HAUS OF DECLINE"></a>
+    </h1>
+    <nav class="desktopNAV">
+      <a href="./comics" >Comics</a>
+      <a href="./music" >Music</a>
+      <a href="./podcast" >Podcast</a>
+      <a href="https://hausofdecline.bigcartel.com/" target="_blank" rel="nofollow">Store</a>
+      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Patreon</a>
+    </nav>
+
+    <nav class="mobileNAV">
+      <a href="./comics" >Comics</a>
+      <a href="./music" >Music</a>
+      <a href="./podcast" >Podcast</a>
+      <br>
+      <a href="https://hausofdecline.bigcartel.com/" target="_blank" rel="nofollow">Store</a>
+      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Patreon</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <h1>Podcast</h1>
+
+
+    <article class="borderimg">
+      <iframe
+      src="https://share.transistor.fm/e/haus-of-decline/playlist?background=ffffff"
+      height="700"
+      width="100%"
+      frameborder="0"
+      scrolling="no"
+      style="max-height: 80vh"
+      seamless="true"></iframe>
+    </article>
+
+
+<!--     <div class="searchBar">
+      <input class="borderimg" type="" placeholder="Keyword...">
+      <button>Search</button>
+    </div> -->
+
+  </main>
+
+  <footer>
+    <div class="socials">
+      <a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">twitter</a>
+      <a href="https://hausofdecline.bsky.social" target="_blank" rel="nofollow">bsky</a>
+      <a href="https://www.instagram.com/hausofdecline/" target="_blank" rel="nofollow">instagram</a>
+      <a href="https://www.youtube.com/@hausofdecline" target="_blank" rel="nofollow">youtube</a>
+      <a href="https://discord.gg/twvNwhqNer" target="_blank" rel="nofollow">discord</a>
+      <a href="./rss" target="_blank" rel="nofollow">rss</a>
+    </div>
+
+    <div style="display: flex; flex-direction: column; justify-content: center;">
+      <div><span style="font-size: 1.5em; display: inline-block; transform: translateY(0.15em);">©</span> Haus of Decline 2025</div>
+      <div style="margin-top: 0.5em;">website by <a href="https://steviep.xyz" target="_blank">steviep</a></div>
+    </div>
+  </footer>
+
+
+
+
+
+<script type="text/javascript">
+
+
+</script>
+</body>
+
+
+</html>
+
+
+
+
+</body>
+</html>
