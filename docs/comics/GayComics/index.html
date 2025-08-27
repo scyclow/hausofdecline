@@ -268,6 +268,31 @@
       text-align: center;
     }
 
+    #comicGrid {
+      display: grid;
+      grid-template-columns:  1fr 1fr 1fr;
+      column-gap: 0.5em;
+      row-gap: 0.5em;
+    }
+
+    #comicGrid > * {
+      align-self: center;
+      justify-self: center;
+    }
+
+    @media (max-width: 740px) {
+      #comicGrid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+
+    @media (max-width: 550px) {
+      #comicGrid {
+        grid-template-columns: 1fr;
+      }
+    }
+
 
 
   </style>
@@ -298,9 +323,8 @@
 
   <main>
 
-    <div><a href="/comics/GayComics">Gay Comics</a></div>
-    <div><a href="/comics/Together">Together</a></div>
-    <div><a href="/comics/GlowOfTheMoon">Glow of the Moon</a></div>
+    <h2>Gay Comics</h2>
+    <div id="comicGrid"></div>
 
   </main>
 
@@ -312,7 +336,7 @@
       <a href="https://www.instagram.com/hausofdecline/" target="_blank" rel="nofollow">instagram</a>
       <a href="https://www.youtube.com/@hausofdecline" target="_blank" rel="nofollow">youtube</a>
       <a href="https://discord.gg/twvNwhqNer" target="_blank" rel="nofollow">discord</a>
-      <a href="/rss" target="_blank" rel="nofollow">rss</a>
+      <a href="/rss.xml" target="_blank" rel="nofollow">rss</a>
     </div>
 
     <div style="display: flex; flex-direction: column; justify-content: center;">
@@ -321,5 +345,35 @@
     </div>
   </footer>
 
+
+
+<script type="module">
+  import { $ } from '/$.js'
+  import { getComicData } from '/data.js'
+
+  const $comicGrid = $.id('comicGrid')
+
+
+  async function displayPaginatedComics() {
+    const loadedData = await getComicData()
+    console.log(loadedData)
+
+
+    $comicGrid.innerHTML = loadedData.reverse().map(d => `
+      <a href="/comics/GayComics/view?comic=${d.id}">
+        <img src="/comics/GayComics/${d.file_name}" loading="lazy">
+      </a>
+    `).join('')
+
+
+
+  }
+
+  displayPaginatedComics()
+
+
+
+
+</script>
 </body>
 </html>

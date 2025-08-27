@@ -67,6 +67,13 @@ try {
   queryParams = {}
 }
 
+export function times(t, fn) {
+  const out = []
+  for (let i = 0; i < t; i++) out.push(fn(i))
+  return out
+}
+
+
 
 
 

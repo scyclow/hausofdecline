@@ -90,9 +90,6 @@
       margin-bottom: 1em;
     }
 
-    main {
-      margin-top: 4em;
-    }
 
 
     img.comic {
@@ -140,7 +137,7 @@
     footer {
       display: flex;
       justify-content: space-between;
-      margin: 2em auto;
+      margin: 4em auto;
       max-width: 400px;
       padding: 1em;
       font-size: 1.25em;
@@ -247,54 +244,118 @@
       }
     }
 
+    @media (max-width:  420px) {
+      #comicIdSearch {
+        font-size: 0.9em;
+      }
+    }
 
-    .musicPlayer {
-      display: block;
-      margin: auto;
-
-      width: 400px;
-      max-width: 87%;
-      height: 786px;
-      max-height: 80vh;
+    .comicControls > div, .comicControls2 > div {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 40px;
+      width: 40px;
+      height: 40px;
     }
 
 
-    article {
-      margin-top: 4em;
+
+    #firstComic, #firstComic2 {
+      background-image: url('/assets/HausIcons/DoubleLeftArrow.jpg');
     }
+    #firstComic:hover, #firstComic2:hover {
+      background-image: url('/assets/HausIcons/DoubleLeftArrowHover.jpg');
+    }
+    #firstComic:active, #firstComic2:active {
+      background-image: url('/assets/HausIcons/DoubleLeftArrowClick.jpg');
+    }
+    #firstComic.disabled, #firstComic2.disabled {
+      background-image: url('/assets/HausIcons/DoubleLeftArrow.jpg') !important;
+    }
+
+
+    #backComic, #backComic2 {
+      background-image: url('/assets/HausIcons/LeftArrow.jpg');
+    }
+    #backComic:hover, #backComic2:hover {
+      background-image: url('/assets/HausIcons/LeftArrowHover.jpg');
+    }
+    #backComic:active, #backComic2:active {
+      background-image: url('/assets/HausIcons/LeftArrowClick.jpg');
+    }
+    #backComic.disabled, #backComic2.disabled {
+      background-image: url('/assets/HausIcons/LeftArrow.jpg') !important;
+    }
+
+
+
+    #randomComic, #randomComic2 {
+      background-image: url('/assets/HausIcons/Dice.jpg');
+    }
+    #randomComic:hover, #randomComic2:hover {
+      background-image: url('/assets/HausIcons/DiceHover.jpg');
+    }
+    #randomComic:active, #randomComic2:active {
+      background-image: url('/assets/HausIcons/DiceClick.jpg');
+    }
+    #randomComic.disabled, #randomComic2.disabled {
+      background-image: url('/assets/HausIcons/Dice.jpg') !important;
+    }
+
+
+    #forwardComic, #forwardComic2 {
+      background-image: url('/assets/HausIcons/RightArrow.jpg');
+    }
+    #forwardComic:hover, #forwardComic2:hover {
+      background-image: url('/assets/HausIcons/RightArrowHover.jpg');
+    }
+    #forwardComic:active, #forwardComic2:active {
+      background-image: url('/assets/HausIcons/RightArrowClick.jpg');
+    }
+    #forwardComic.disabled, #forwardComic2.disabled {
+      background-image: url('/assets/HausIcons/RightArrow.jpg') !important;
+    }
+
+
+
+
+    #latestComic, #latestComic2 {
+      background-image: url('/assets/HausIcons/DoubleRightArrow.jpg');
+    }
+    #latestComic:hover, #latestComic2:hover {
+      background-image: url('/assets/HausIcons/DoubleRightArrowHover.jpg');
+    }
+    #latestComic:active, #latestComic2:active {
+      background-image: url('/assets/HausIcons/DoubleRightArrowClick.jpg');
+    }
+    #latestComic.disabled, #latestComic2.disabled {
+      background-image: url('/assets/HausIcons/DoubleRightArrow.jpg') !important;
+    }
+
+
+    .searchButton {
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100px;
+      height: 50px;
+      background-size: 100px;
+      border: 0;
+      background-image: url('/assets/HausIcons/Search.jpg');
+    }
+
+    .searchButton:hover {
+      background-image: url('/assets/HausIcons/SearchClick.jpg');
+    }
+
+    .searchButton:active {
+      background-image: url('/assets/HausIcons/SearchHover.jpg');
+    }
+
 
     h2 {
-      margin: 0.5em auto;
       text-align: center;
+      margin-bottom: 0.5em;
     }
-
-    #comicGrid {
-      display: grid;
-      grid-template-columns:  1fr 1fr 1fr;
-      column-gap: 0.5em;
-      row-gap: 0.5em;
-    }
-
-    #comicGrid > * {
-      align-self: center;
-      justify-self: center;
-    }
-
-    @media (max-width: 740px) {
-      #comicGrid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-
-    @media (max-width: 550px) {
-      #comicGrid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-
-
 
   </style>
 </head>
@@ -323,12 +384,41 @@
   </header>
 
   <main>
+    <div class="comicContainer">
+      <noscript>
+        <p style="text-align: center; border: 1px dashed;">Please enable JavaScript to browse comics</p>
+      </noscript>
 
-    <h2>Together</h2>
-    <div id="comicGrid"></div>
+      <a href="/comics/Together"><h2>&lt; Back to Together</h2></a>
+
+      <div class="comicControls">
+        <div id="firstComic"></div>
+        <div id="backComic"></div>
+        <div id="randomComic"></div>
+        <div id="forwardComic"></div>
+        <div id="latestComic"></div>
+      </div>
+      <h2 id="comicTitle"></h2>
+      <a id="viewedComicLink" target="_blank">
+        <img id="viewedComic" class="comic">
+      </a>
+
+      <div class="comicControls2">
+        <div id="firstComic2"></div>
+        <div id="backComic2"></div>
+        <div id="randomComic2"></div>
+        <div id="forwardComic2"></div>
+        <div id="latestComic2"></div>
+      </div>
+
+    </div>
+
+<!--     <div class="searchBar">
+      <input class="borderimg" type="" placeholder="Keyword...">
+      <button>Search</button>
+    </div> -->
 
   </main>
-
 
   <footer>
     <div class="socials">
@@ -338,6 +428,7 @@
       <a href="https://www.youtube.com/@hausofdecline" target="_blank" rel="nofollow">youtube</a>
       <a href="https://discord.gg/twvNwhqNer" target="_blank" rel="nofollow">discord</a>
       <a href="/rss.xml" target="_blank" rel="nofollow">rss</a>
+
     </div>
 
     <div style="display: flex; flex-direction: column; justify-content: center;">
@@ -345,31 +436,160 @@
       <div style="margin-top: 0.5em;">website by <a href="https://steviep.xyz" target="_blank">steviep</a></div>
     </div>
   </footer>
-
-
+</body>
 
 <script type="module">
-  import { $, times } from '/$.js'
+  import { $ } from '/$.js'
   import { getComicData } from '/data.js'
 
-  const $comicGrid = $.id('comicGrid')
+  const $viewedComicLink = $.id('viewedComicLink')
+  const $viewedComic = $.id('viewedComic')
+  const $comicTitle = $.id('comicTitle')
+  // const $comicIdSearch = $.id('comicIdSearch')
+  // const $comicIdLookup = $.id('comicIdLookup')
+
+  let u = new URL(window.location)
+  let requestedComic = u.searchParams.get('comic')
 
 
-  async function displayPaginatedComics() {
 
-    $comicGrid.innerHTML = times(241, i => `
-      <a href="/comics/Together/view?comic=${i}">
-        <img src="/comics/Together/Together${i}.jpg" loading="lazy">
-      </a>
-    `).join('')
+
+  async function selectComic(id) {
+
+    const baseRoute = '/comics/Together/'
+
+    $viewedComic.src = baseRoute + `Together${id}.jpg`
+    $viewedComicLink.href = baseRoute + `Together${id}.jpg`
+    $viewedComic.alt = id > 0 ? `Page ${id}` : 'Cover Page'
+    $viewedComic.title = id > 0 ? `Page ${id}` : 'Cover Page'
+
+
+    $comicTitle.innerHTML = id > 0 ? `Page ${id}` : 'Cover Page'
+
+    if (Number(id) === 240) {
+      $.id('latestComic').classList.add('disabled')
+      $.id('latestComic2').classList.add('disabled')
+      $.id('forwardComic').classList.add('disabled')
+      $.id('forwardComic2').classList.add('disabled')
+    } else {
+      $.id('latestComic').classList.remove('disabled')
+      $.id('latestComic2').classList.remove('disabled')
+      $.id('forwardComic').classList.remove('disabled')
+      $.id('forwardComic2').classList.remove('disabled')
+    }
+
+
+    if (Number(id) === 0) {
+      $.id('firstComic').classList.add('disabled')
+      $.id('firstComic2').classList.add('disabled')
+      $.id('backComic').classList.add('disabled')
+      $.id('backComic2').classList.add('disabled')
+    } else {
+      $.id('firstComic').classList.remove('disabled')
+      $.id('firstComic2').classList.remove('disabled')
+      $.id('backComic').classList.remove('disabled')
+      $.id('backComic2').classList.remove('disabled')
+    }
+  }
+
+  async function displayComic(id) {
+
+    if (id != null) {
+      selectComic(id)
+
+      requestedComic = id
+      u.searchParams.set('comic', id)
+      window.history.replaceState({}, '', u)
+    } else {
+      selectComic(0)
+    }
 
   }
 
-  displayPaginatedComics()
+
+
+  displayComic(requestedComic)
+
+
+  const firstComic = async () => {
+    displayComic(0)
+  }
+  const backComic = async () => {
+    if (Number(requestedComic) != 0) {
+      displayComic(Number(requestedComic) - 1)
+    } else if (!requestedComic) {
+      displayComic(240)
+    }
+  }
+  const randomComic = async () => {
+    const data = await loadedData
+    displayComic(parseInt(Math.random() * 240))
+  }
+  const forwardComic = async () => {
+    if (requestedComic != null) {
+      displayComic(Number(requestedComic) + 1)
+    }
+  }
+  const latestComic = async () => {
+    displayComic(240)
+  }
+
+  function scrollToComic() {
+    document.querySelector('#comicTitle').scrollIntoView({
+      behavior: 'smooth', // or 'auto'
+      block: 'start',     // 'start', 'center', 'end', or 'nearest'
+    });
+  }
+
+  $.id('firstComic').onclick = firstComic
+  $.id('firstComic2').onclick = () => {
+    firstComic()
+    scrollToComic()
+  }
+
+  $.id('backComic').onclick = backComic
+  $.id('backComic2').onclick = () => {
+    backComic()
+    scrollToComic()
+  }
+
+  $.id('randomComic').onclick = randomComic
+  $.id('randomComic2').onclick = () => {
+    randomComic()
+    scrollToComic()
+  }
+
+  $.id('forwardComic').onclick = forwardComic
+  $.id('forwardComic2').onclick = () => {
+    forwardComic()
+    scrollToComic()
+  }
+
+  $.id('latestComic').onclick = latestComic
+  $.id('latestComic2').onclick = () => {
+    latestComic()
+    scrollToComic()
+  }
+
+
+  // $comicIdSearch.onkeydown = e => {
+  //   if (e.key === 'Enter') {
+  //     displayComic(e.target.value)
+  //     $comicIdSearch.value = ''
+  //     scrollToComic()
+  //   }
+  // }
+
+  // comicIdLookup.onclick = () => {
+  //   displayComic($comicIdSearch.value)
+  //   $comicIdSearch.value = ''
+  //   scrollToComic()
+
+  // }
 
 
 
 
 </script>
-</body>
+
 </html>
