@@ -67,6 +67,10 @@
       line-height: 0;
     }
 
+    #title:hover {
+      opacity: 0.6;
+    }
+
     #title img {
       filter: invert(1) contrast(2);
       max-height: 120px;
@@ -294,6 +298,12 @@
     }
 
 
+    .comicThumbnail:hover {
+      opacity: 0.5;
+    }
+
+
+
 
   </style>
 </head>
@@ -360,7 +370,7 @@
 
 
     $comicGrid.innerHTML = loadedData.reverse().map(d => `
-      <a href="/comics/GayComics/view?comic=${d.id}">
+      <a class="comicThumbnail" href="/comics/GayComics/view?comic=${d.id}">
         <img src="/comics/GayComics/${d.file_name}" loading="lazy">
       </a>
     `).join('')

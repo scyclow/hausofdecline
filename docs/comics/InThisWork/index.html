@@ -67,6 +67,10 @@
       line-height: 0;
     }
 
+    #title:hover {
+      opacity: 0.6;
+    }
+
     #title img {
       filter: invert(1) contrast(2);
       max-height: 120px;
@@ -294,6 +298,10 @@
     }
 
 
+    .comicThumbnail:hover {
+      opacity: 0.5;
+    }
+
 
 
   </style>
@@ -358,7 +366,7 @@
   async function displayPaginatedComics() {
 
     $comicGrid.innerHTML = times(22, i => `
-      <a href="/comics/InThisWork/view?comic=${i}">
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=${i}">
         <img src="/comics/InThisWork/InThisWork${i}.jpg" loading="lazy">
       </a>
     `).join('')
