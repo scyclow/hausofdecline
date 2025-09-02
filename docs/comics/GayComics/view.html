@@ -363,6 +363,9 @@
     }
 
   </style>
+
+  <link rel="stylesheet" type="text/css" href="/darkstyle.css">
+
 </head>
 <body>
   <header>
@@ -613,6 +616,24 @@
   }
 
 
+document.addEventListener('keydown', async e => {
+  if (
+    e.target.tagName === 'INPUT' ||
+    e.target.tagName === 'TEXTAREA' ||
+    e.target.isContentEditable
+  ) return
+
+  if (e.shiftKey && e.key === 'ArrowLeft') {
+    firstComic()
+  } else if (e.shiftKey && e.key === 'ArrowRight') {
+    latestComic()
+  } else if (e.key === 'ArrowLeft' && requestedComic !== 1) {
+    backComic()
+  } else if (e.key === 'ArrowRight') {
+    const data = await loadedData
+    if (requestedComic < data.length) forwardComic()
+  }
+})
 
 
 </script>

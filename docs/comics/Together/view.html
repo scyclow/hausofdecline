@@ -363,6 +363,9 @@
     }
 
   </style>
+
+  <link rel="stylesheet" type="text/css" href="/darkstyle.css">
+
 </head>
 <body>
   <header>
@@ -576,6 +579,24 @@
     scrollToComic()
   }
 
+
+document.addEventListener('keydown', async e => {
+  if (
+    e.target.tagName === 'INPUT' ||
+    e.target.tagName === 'TEXTAREA' ||
+    e.target.isContentEditable
+  ) return
+
+  if (e.shiftKey && e.key === 'ArrowLeft') {
+    firstComic()
+  } else if (e.shiftKey && e.key === 'ArrowRight') {
+    latestComic()
+  } else if (e.key === 'ArrowLeft' && requestedComic !== 0) {
+    backComic()
+  } else if (e.key === 'ArrowRight') {
+    if (requestedComic < 240) forwardComic()
+  }
+})
 
   // $comicIdSearch.onkeydown = e => {
   //   if (e.key === 'Enter') {
