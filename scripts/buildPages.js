@@ -52,7 +52,7 @@ async function main() {
 
   let index = await fs.readFile('docs/index.html', 'utf8')
   // let gayComicsView = await fs.readFile('docs/comics/GayComics/view.html', 'utf8')
-  // let gayComicsIndex = await fs.readFile('docs/comics/GayComics/index.html', 'utf8')
+  let gayComicsIndex = await fs.readFile('docs/comics/GayComics/index.html', 'utf8')
 
   index = index.replace(
     /<img([^>]*id=["']viewedComic["'][^>]*)>/,
@@ -69,14 +69,22 @@ async function main() {
   console.log(`Updated index.html`)
 
 
-  // const gridHTML = json
-  //   .reverse()
-  //   .map(d => `
-  //     <a class="comicThumbnail" href="/comics/GayComics/view?comic=${d.id}">
-  //       <img src="/comics/GayComics/${d.file_name}" loading="lazy">
-  //     </a>
-  //   `)
-  //   .join('')
+  const gridHTML = json
+    .reverse()
+    .map(d => `
+      <a class="comicThumbnail" href="/comics/GayComics/view?comic=${d.id}">
+        <img src="/comics/GayComics/${d.file_name}" loading="lazy">
+      </a>
+    `)
+    .join('')
+
+  gayComicsIndex = gayComicsIndex.replace(
+    /<div([^>]*id=["']comicGrid["'][^>]*)>(.*?)<\/div>/s,
+    `<div$1>${gridHTML}</div>`
+  )
+
+  await fs.writeFile('docs/comics/GayComics/index.html', gayComicsIndex, 'utf8')
+  console.log(`Updated 'docs/comics/GayComics/index.html' with latest href and comic grid`)
 }
 
 main().catch(err => {
