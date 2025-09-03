@@ -200,15 +200,38 @@
 
     .searchBar {
       text-align: center;
-      margin: 1em 0;
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-bottom: 0.5em;
+    }
+
+    .searchBarContainer {
+      margin: 1em 0;
+      margin-bottom: 2em;
     }
 
     #comicIdSearch {
       border-width: 14px;
       font-size: 1.25em;
+    }
+
+    .searchButton {
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100px;
+      height: 50px;
+      background-size: 100px;
+      border: 0;
+      background-image: url('../assets/HausIcons/Search.jpg');
+    }
+
+    .searchButton:hover {
+      background-image: url('../assets/HausIcons/SearchClick.jpg');
+    }
+
+    .searchButton:active {
+      background-image: url('../assets/HausIcons/SearchHover.jpg');
     }
 
     .socials a {
@@ -338,6 +361,16 @@
 
     <h2 style="margin-bottom: 0.25em;">Gay Comics</h2>
     <h4 style="text-align: center; margin-bottom: 1em;">(Click to view)</h4>
+
+    <div class="searchBarContainer">
+      <div class="searchBar">
+        <input id="comicSearch" class="borderimg" placeholder="Keyword search..." style="font-size: 1.1em">
+        <button class="searchButton" id="comicSearchButton"></button>
+      </div>
+      <h3 id="resultsMessage" style="text-align: center;"></h3>
+    </div>
+
+
     <div id="comicGrid"></div>
 
   </main>
@@ -365,15 +398,25 @@
   import { $ } from '/$.js'
   import { getComicData } from '/data.js'
 
+  let u = new URL(window.location)
+  let requestedSearch = u.searchParams.get('search')
+
+  if (requestedSearch) {
+    filterComics(requestedSearch)
+  }
+
+
+
   const $comicGrid = $.id('comicGrid')
 
 
-  async function displayPaginatedComics() {
+  async function displayComics(ids=null) {
     const loadedData = await getComicData()
-    console.log(loadedData)
 
+    const filterFn = ids && ids.length ? d => ids.includes(d.id) : () => true
 
-    $comicGrid.innerHTML = loadedData.reverse().map(d => `
+    if (ids && ids.length) $.id('resultsMessage').innerHTML = ids.length + ' comics found'
+    $comicGrid.innerHTML = loadedData.reverse().filter(filterFn).map(d => `
       <a class="comicThumbnail" href="/comics/GayComics/view?comic=${d.id}">
         <img src="/comics/GayComics/${d.file_name}" loading="lazy">
       </a>
@@ -383,7 +426,55 @@
 
   }
 
-  displayPaginatedComics()
+  displayComics()
+
+
+  async function filterComics(searchText) {
+    u.searchParams.set('search', searchText)
+
+    if (!searchText) {
+      u.searchParams.delete('search')
+      window.history.replaceState({}, '', u)
+      $.id('resultsMessage').innerHTML = ''
+      return displayComics()
+    }
+
+    window.history.replaceState({}, '', u)
+
+
+    const loadedData = await getComicData()
+
+    const searchTextWords = searchText.split(' ')
+
+    const matchingIds = loadedData
+      .filter(d => {
+        return searchText.split(' ')
+          .every(st =>
+            d.title.toLowerCase().split(' ').includes(st.toLowerCase())
+            || d.description.toLowerCase().split(' ').includes(st.toLowerCase())
+          )
+      })
+      .map(d => d.id)
+
+
+    if (matchingIds.length) displayComics(matchingIds)
+    else {
+      $comicGrid.innerHTML = ''
+      $.id('resultsMessage').innerHTML = 'No comics found'
+    }
+
+  }
+
+
+  $.id('comicSearch').onkeydown = e => {
+    if (e.key === 'Enter') {
+      filterComics(e.target.value)
+    }
+  }
+
+  $.id('comicSearchButton').onclick = () => {
+    filterComics($.id('comicSearch').value)
+  }
 
 
 
