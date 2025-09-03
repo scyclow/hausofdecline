@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Haus of Decline New Comic</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="./favicon.jpg" id="favicon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000" />
+
+
+  <link rel="stylesheet" type="text/css" href="./style.css">
+
+  <style type="text/css">
+
+
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker');
+
+
+    * {
+      --text-color:  var(--dark-color);
+      --bg-color: var(--light-color);
+
+      font-family: "Font Of Decline", sans-serif;
+      font-weight: bold;
+      text-shadow: 0.1px 0.1px 0 #000, -0.1px 0.1px 0 #000, 0.1px -0.1px 0 #000, -0.1px -0.1px 0 #000;
+      font-optical-sizing: auto;
+    }
+
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      background-image: url("./assets/bg.jpg");
+    }
+
+    body.darkmode * {
+      --accent-color: var(--light-color);
+      --text-color:  var(--light-color);
+      --bg-color: var(--dark-color);
+      --border-color: var(--light-color);
+      color: var(--text-color);
+      /*background-image: url("./assets/bg-invered.jpg");*/
+    }
+
+    #title {
+      padding: 0.5em;
+      text-align: center;
+      line-height: 0;
+    }
+
+    #title img {
+      filter: invert(1) contrast(2);
+      max-height: 120px;
+      width: auto;
+      height: auto;
+    }
+    .darkmode #title img {
+      filter:  contrast(2);
+
+    }
+
+    a, a:visited {
+      color: var(--text-color);
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    header {
+      margin-bottom: 1em;
+    }
+
+
+
+    img.comic {
+      max-width: 100%;
+      /*max-height: 70vh;*/
+      width: auto;
+      height: auto;
+    }
+
+    .comicContainer {
+      margin-top: 2.5em;
+      display: flex;
+      justify-content: center;
+      /*align-items: center;*/
+      flex-direction: column;
+    }
+/*
+    #comicTitle {
+      padding-left: 1.1em;
+      font-size: 1.1em;
+      font-weight: normal;
+      text-align: left;
+      margin-top:  1em;
+    }*/
+
+    .publication {
+      font-size: 0.75em;
+      font-style: italic;
+
+    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+    }
+
+
+    header, main, footer {
+      background: var(--bg-color);
+    }
+
+    nav a {
+      font-size: 1.25em;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      margin: 4em auto;
+      max-width: 400px;
+      padding: 1em;
+      font-size: 1.25em;
+    }
+
+    button {
+/*      padding: 0.4em 0.75em;
+      background: var(--text-color);
+      color: var(--bg-color);
+      border: 0;
+      border-radius: 2px;*/
+    }
+
+    input {
+      padding: 0.25em;
+    }
+
+    .comicControls, .comicControls2 {
+      display: flex;
+      justify-content: space-around;
+      margin:  auto;
+      max-width: 320px;
+      width: 100%;
+    }
+
+    .comicControls2 {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+
+    .comicControls div, .comicControls2 div {
+      font-size: 2em;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .disabled {
+      user-select: none;
+      pointer-events: none;
+      opacity: 0.25;
+      cursor: unset !important;
+    }
+
+    .mobileNAV {
+      display: none;
+      text-align: center;
+    }
+
+    .borderimg {
+      border: 20px solid transparent;
+      border-image: url('./assets/border-image.png') 60 round;
+    }
+
+
+    .searchBar {
+      text-align: center;
+      margin: 1em 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #comicIdSearch {
+      border-width: 14px;
+      font-size: 1.25em;
+    }
+
+    .socials a {
+      display: block;
+      margin: 0.5em 0;
+    }
+
+
+    @media (max-width:  640px) {
+
+      body {
+        background: none;
+      }
+
+      .mobileNAV {
+        display: block;
+      }
+
+      .desktopNAV {
+        display: none;
+      }
+
+
+      nav a {
+        /*font-size: 0.9em;*/
+        display: inline-block;
+        margin: 0.1em 0.5em;
+      }
+
+      footer {
+        font-size: 1em;
+      }
+
+      .comicContainer {
+        margin-top: 1.5em;
+      }
+
+      .publication {
+        display: block;
+      }
+    }
+
+    h3 {
+
+    }
+    td {
+      padding: 0.5em;
+    }
+
+    input, select {
+      width: 200px;
+      text-align: left;
+      padding: 0.25em;
+
+    }
+    select {
+      width: 210px;
+
+    }
+
+    button {
+      font-size: 1.5em;
+      padding: 0.25em 0.5em;
+      margin-bottom: 2em;
+    }
+
+    textarea {
+      padding: 0.5em;
+      font-family: monospace;
+      margin-bottom: 1em;
+      width: 600px;
+
+    }
+
+    .help {
+      font-style: italic;
+      font-size: 0.75em;
+    }
+
+    .error {
+      color: red;
+    }
+
+  </style>
+
+  <!-- <link rel="stylesheet" type="text/css" href="./darkstyle.css"> -->
+
+
+</head>
+<body>
+  <header>
+    <h1 style="margin: 1em; text-align: center;">New Comic</h1>
+  </header>
+
+  <main>
+    <h3>Published Comics: <span id="publishedComics"></span></h3>
+
+    <table>
+      <tr>
+        <td>ID</td>
+        <td><input id="comicId" type="number"></td>
+        <td class="help">(eg. 1)</td>
+      </tr>
+      <tr>
+        <td>Comic Title</td>
+        <td><input id="comicTitle"></td>
+        <td class="help">(eg. Boxing Gloves)</td>
+      </tr>
+      <tr>
+        <td>File Name</td>
+        <td><input id="fileName"></td>
+        <td class="help">(eg. 001.BoxingGloves.jpg)</td>
+      </tr>
+
+      <tr>
+        <td>Publication Day</td>
+        <td><input id="pubDay" type="number"></td>
+        <td class="help">(eg. 1)</td>
+      </tr>
+
+      <tr>
+        <td>Publication Month</td>
+        <td>
+          <select id="pubMonth" name="month">
+            <option value="" disabled selected></option>
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+          </select>
+        </td>
+        <td class="help">(eg. January)</td>
+      </tr>
+
+      <tr>
+        <td>Publication Year</td>
+        <td><input id="pubYear" type="number"></td>
+        <td class="help">(eg. 2025)</td>
+      </tr>
+
+      <tr>
+        <td>Description</td>
+        <td><input id="description"></td>
+        <td class="help">(eg. Man with penis says something funny)</td>
+      </tr>
+
+      <tr>
+        <td id="error" class="error"></td>
+      </tr>
+
+      <tr>
+        <td><button id="generate">Generate CSV/RSS</button></td>
+      </tr>
+    </table>
+
+
+    <h3>CSV Row</h3>
+    <p class="help">(Copy and past into bottom row of GayComicsMetadata.csv)</p>
+    <textarea id="csvRow"></textarea>
+
+
+    <h3>RSS Item</h3>
+    <p class="help">(Copy and past under the "language" tag in rss.xml)</p>
+    <textarea id="rssItem" style="height: 150px"></textarea>
+
+  </main>
+</body>
+
+<script type="module">
+  import { $ } from './$.js'
+  import { getComicData } from './data.js'
+
+
+
+
+
+  const loadedData = getComicData()
+
+  loadedData.then(d => {
+    $.id('publishedComics').innerHTML = d.length
+  })
+
+
+  $.id('generate').onclick = () => {
+    const id = $.id('comicId').value
+    const title = $.id('comicTitle').value
+    const fileName = $.id('fileName').value
+    const pubDay = $.id('pubDay').value
+    const pubMonth = $.id('pubMonth').value
+    const pubYear = $.id('pubYear').value
+    const description = $.id('description').value
+
+    if (!id) {
+      $.id('error').innerHTML = 'Missing id'
+      return
+    } else if (!title) {
+      $.id('error').innerHTML = 'Missing title'
+      return
+    } else if (!fileName) {
+      $.id('error').innerHTML = 'Missing file name'
+      return
+    } else if (!pubDay) {
+      $.id('error').innerHTML = 'Missing publication day'
+      return
+    } else if (!pubMonth) {
+      $.id('error').innerHTML = 'Missing pulication month'
+      return
+    } else if (!pubYear) {
+      $.id('error').innerHTML = 'Missing publication year'
+      return
+    } else if (pubDay < 1 || pubDay > 31) {
+      $.id('error').innerHTML = 'Invalid publication day'
+      return
+    } else if (pubYear < 1989 || pubYear > 2100) {
+      $.id('error').innerHTML = 'Invalid publication year'
+      return
+    }
+
+    $.id('error').innerHTML = ''
+
+    const date = new Date(pubYear, pubMonth, pubDay)
+
+    const csvRow = [id, '"' + title + '"', fileName, date.getTime(), '"' + description + '"']
+
+
+    const rssItem = `
+    <item>
+      <title>#${id}: ${title}</title>
+      <link>https://hausofdecline.ca/comics/GayComics/view?comic=${id}</link>
+      <description><img src="https://imgs.hausofdecline.ca/comics/GayComics/${fileName}" title="#${id}: ${title}" alt="${description || `#${id}: ${title}`}" /></description>
+      <pubDate>${date.toUTCString()}</pubDate>
+      <guid>https://hausofdecline.ca/comics/GayComics/view?comic=${id}</guid>
+    </item>`
+
+    $.id('csvRow').value = csvRow
+    $.id('rssItem').value = rssItem
+
+
+    $.id('comicId').value = ''
+    $.id('comicTitle').value = ''
+    $.id('fileName').value = ''
+    $.id('pubDay').value = ''
+    $.id('pubMonth').value = ''
+    $.id('pubYear').value = ''
+    $.id('description').value = ''
+  }
+
+
+</script>
+
+</html>
