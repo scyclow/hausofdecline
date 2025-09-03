@@ -359,6 +359,10 @@
       margin-bottom: 0.5em;
     }
 
+    #viewedComic {
+      min-height: min(400px, 45vw);
+    }
+
   </style>
 
   <link rel="stylesheet" type="text/css" href="/darkstyle.css">
@@ -448,9 +452,12 @@
   </footer>
 </body>
 
+<script src="../../data.js"></script>
 <script type="module">
-  import { $ } from '/$.js'
-  import { getComicData } from '/data.js'
+
+  const $ = {
+    id: i => document.getElementById(i)
+  }
 
   const $viewedComicLink = $.id('viewedComicLink')
   const $viewedComic = $.id('viewedComic')
@@ -463,7 +470,7 @@
 
 
 
-  const loadedData = getComicData()
+  const loadedData = getComicData('../../GayComicsMetadata.csv')
 
   async function selectComic(id) {
     const data = await loadedData

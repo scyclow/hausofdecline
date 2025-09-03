@@ -391,9 +391,15 @@
 
 
 
+<script src="../../data.js"></script>
 <script type="module">
-  import { $ } from '/$.js'
-  import { getComicData } from '/data.js'
+
+
+  const loadedData = getComicData('../../GayComicsMetadata.csv')
+
+  const $ = {
+    id: i => document.getElementById(i)
+  }
 
   let u = new URL(window.location)
   let requestedSearch = u.searchParams.get('search')
@@ -409,12 +415,12 @@
 
 
   async function displayComics(ids=null) {
-    const loadedData = await getComicData()
 
     const filterFn = ids && ids.length ? d => ids.includes(d.id) : () => true
+    const data = await loadedData
 
     if (ids && ids.length) $.id('resultsMessage').innerHTML = ids.length + ' comics found'
-    $comicGrid.innerHTML = loadedData.reverse().filter(filterFn).map(d => `
+    $comicGrid.innerHTML = data.reverse().filter(filterFn).map(d => `
       <a class="comicThumbnail" href="/comics/GayComics/view?comic=${d.id}">
         <img src="/comics/GayComics/${d.file_name}" loading="lazy">
       </a>
@@ -439,12 +445,11 @@
 
     window.history.replaceState({}, '', u)
 
-
-    const loadedData = await getComicData()
-
     const searchTextWords = searchText.split(' ')
 
-    const matchingIds = loadedData
+    const data = await loadedData
+
+    const matchingIds = data
       .filter(d => {
         return searchText.split(' ')
           .every(st =>

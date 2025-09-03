@@ -334,7 +334,95 @@
 
     <h2 style="margin-bottom: 0.25em;">In This Work</h2>
     <h4 style="text-align: center; margin-bottom: 1em;">(Click to view)</h4>
-    <div id="comicGrid"></div>
+    <div id="comicGrid">
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=0">
+        <img src="/comics/InThisWork/InThisWork0.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=1">
+        <img src="/comics/InThisWork/InThisWork1.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=2">
+        <img src="/comics/InThisWork/InThisWork2.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=3">
+        <img src="/comics/InThisWork/InThisWork3.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=4">
+        <img src="/comics/InThisWork/InThisWork4.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=5">
+        <img src="/comics/InThisWork/InThisWork5.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=6">
+        <img src="/comics/InThisWork/InThisWork6.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=7">
+        <img src="/comics/InThisWork/InThisWork7.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=8">
+        <img src="/comics/InThisWork/InThisWork8.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=9">
+        <img src="/comics/InThisWork/InThisWork9.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=10">
+        <img src="/comics/InThisWork/InThisWork10.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=11">
+        <img src="/comics/InThisWork/InThisWork11.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=12">
+        <img src="/comics/InThisWork/InThisWork12.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=13">
+        <img src="/comics/InThisWork/InThisWork13.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=14">
+        <img src="/comics/InThisWork/InThisWork14.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=15">
+        <img src="/comics/InThisWork/InThisWork15.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=16">
+        <img src="/comics/InThisWork/InThisWork16.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=17">
+        <img src="/comics/InThisWork/InThisWork17.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=18">
+        <img src="/comics/InThisWork/InThisWork18.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=19">
+        <img src="/comics/InThisWork/InThisWork19.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=20">
+        <img src="/comics/InThisWork/InThisWork20.jpg" loading="lazy">
+      </a>
+
+      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=21">
+        <img src="/comics/InThisWork/InThisWork21.jpg" loading="lazy">
+      </a>
+    </div>
 
   </main>
 
@@ -357,28 +445,5 @@
 
 
 
-<script type="module">
-  import { $, times } from '/$.js'
-  import { getComicData } from '/data.js'
-
-  const $comicGrid = $.id('comicGrid')
-
-
-  async function displayPaginatedComics() {
-
-    $comicGrid.innerHTML = times(22, i => `
-      <a class="comicThumbnail" href="/comics/InThisWork/view?comic=${i}">
-        <img src="/comics/InThisWork/InThisWork${i}.jpg" loading="lazy">
-      </a>
-    `).join('')
-
-  }
-
-  displayPaginatedComics()
-
-
-
-
-</script>
 </body>
 </html>

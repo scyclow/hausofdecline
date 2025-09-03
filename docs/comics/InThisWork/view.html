@@ -444,8 +444,9 @@
 </body>
 
 <script type="module">
-  import { $ } from '/$.js'
-  import { getComicData } from '/data.js'
+  const $ = {
+    id: i => document.getElementById(i)
+  }
 
   const $viewedComicLink = $.id('viewedComicLink')
   const $viewedComic = $.id('viewedComic')
