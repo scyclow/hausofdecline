@@ -7,7 +7,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "add-comics": "node scripts/addComics.js"
+    "add-comics": "node scripts/addComics.js",
+    "update-dates": "node scripts/updateComicDates.js"
   },
   "repository": {
     "type": "git",
