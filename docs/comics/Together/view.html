@@ -32,9 +32,6 @@
   <style type="text/css">
 
 
-    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker');
-
-
     * {
       --text-color:  var(--dark-color);
       --bg-color: var(--light-color);
@@ -362,7 +359,14 @@
       margin-bottom: 0.5em;
     }
 
+    #viewedComic {
+      min-height: min(550px, 90vw);
+    }
+
   </style>
+
+  <link rel="stylesheet" type="text/css" href="/darkstyle.css">
+
 </head>
 <body>
   <header>
@@ -418,6 +422,10 @@
 
     </div>
 
+    <h2 style="text-align: center; margin-top: 2em">
+      <a href="https://patreon.com/hausofdecline" target="_blank" rel="nofollow">Support Haus of Decline on Patreon!</a>
+    </h2>
+
 <!--     <div class="searchBar">
       <input class="borderimg" type="" placeholder="Keyword...">
       <button>Search</button>
@@ -427,11 +435,10 @@
 
   <footer>
     <div class="socials">
-      <a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">twitter</a>
       <a href="https://hausofdecline.bsky.social" target="_blank" rel="nofollow">bsky</a>
+      <a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">twitter</a>
       <a href="https://www.instagram.com/hausofdecline/" target="_blank" rel="nofollow">instagram</a>
       <a href="https://www.youtube.com/@hausofdecline" target="_blank" rel="nofollow">youtube</a>
-      <a href="https://discord.gg/twvNwhqNer" target="_blank" rel="nofollow">discord</a>
       <a href="/rss.xml" target="_blank" rel="nofollow">rss</a>
 
     </div>
@@ -444,8 +451,10 @@
 </body>
 
 <script type="module">
-  import { $ } from '/$.js'
-  import { getComicData } from '/data.js'
+  const $ = {
+    id: i => document.getElementById(i)
+  }
+
 
   const $viewedComicLink = $.id('viewedComicLink')
   const $viewedComic = $.id('viewedComic')
@@ -576,6 +585,24 @@
     scrollToComic()
   }
 
+
+document.addEventListener('keydown', async e => {
+  if (
+    e.target.tagName === 'INPUT' ||
+    e.target.tagName === 'TEXTAREA' ||
+    e.target.isContentEditable
+  ) return
+
+  if (e.shiftKey && e.key === 'ArrowLeft') {
+    firstComic()
+  } else if (e.shiftKey && e.key === 'ArrowRight') {
+    latestComic()
+  } else if (e.key === 'ArrowLeft' && requestedComic !== 0) {
+    backComic()
+  } else if (e.key === 'ArrowRight') {
+    if (requestedComic < 240) forwardComic()
+  }
+})
 
   // $comicIdSearch.onkeydown = e => {
   //   if (e.key === 'Enter') {

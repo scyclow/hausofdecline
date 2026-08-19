@@ -32,9 +32,6 @@
   <style type="text/css">
 
 
-    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker');
-
-
     * {
       --text-color:  var(--dark-color);
       --bg-color: var(--light-color);
@@ -352,9 +349,15 @@
       background-image: url('./assets/HausIcons/SearchHover.jpg');
     }
 
-
+    #viewedComic {
+      min-height: min(400px, 45vw);
+    }
 
   </style>
+
+  <link rel="stylesheet" type="text/css" href="./darkstyle.css">
+
+
 </head>
 <body>
   <header>
@@ -426,11 +429,10 @@
 
   <footer>
     <div class="socials">
-      <a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">twitter</a>
       <a href="https://hausofdecline.bsky.social" target="_blank" rel="nofollow">bsky</a>
+      <a href="https://x.com/hausofdecline" target="_blank" rel="nofollow">twitter</a>
       <a href="https://www.instagram.com/hausofdecline/" target="_blank" rel="nofollow">instagram</a>
       <a href="https://www.youtube.com/@hausofdecline" target="_blank" rel="nofollow">youtube</a>
-      <a href="https://discord.gg/twvNwhqNer" target="_blank" rel="nofollow">discord</a>
       <a href="./rss" target="_blank" rel="nofollow">rss</a>
 
     </div>
@@ -442,9 +444,13 @@
   </footer>
 </body>
 
+<script src="./data.js"></script>
+
 <script type="module">
-  import { $ } from './$.js'
-  import { getComicData } from './data.js'
+
+  const $ = {
+    id: i => document.getElementById(i)
+  }
 
   const $viewedComicLink = $.id('viewedComicLink')
   const $viewedComic = $.id('viewedComic')
@@ -457,7 +463,7 @@
 
 
 
-  const loadedData = getComicData()
+  const loadedData = getComicData('./GayComicsMetadata.csv')
 
   async function selectComic(id) {
     const data = await loadedData
@@ -605,6 +611,26 @@
     scrollToComic()
 
   }
+
+
+document.addEventListener('keydown', async e => {
+  if (
+    e.target.tagName === 'INPUT' ||
+    e.target.tagName === 'TEXTAREA' ||
+    e.target.isContentEditable
+  ) return
+
+  if (e.shiftKey && e.key === 'ArrowLeft') {
+    firstComic()
+  } else if (e.shiftKey && e.key === 'ArrowRight') {
+    latestComic()
+  } else if (e.key === 'ArrowLeft' && requestedComic !== 1) {
+    backComic()
+  } else if (e.key === 'ArrowRight') {
+    const data = await loadedData
+    if (requestedComic < data.length) forwardComic()
+  }
+})
 
 
 

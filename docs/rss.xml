@@ -1,9 +1,11 @@
 <rss version="2.0">
   <channel>
-    <title>Haus of Decline</title>
+    <title>Haus of Decline (beta)</title>
     <link>https://hausofdecline.ca/</link>
     <description>Haus of Decline is the name of the collective projects of Ms. Alex Hood. This encompasses comics, a podcast, her music, a live series and whatever else she may care to incorporate into this scheme.</description>
     <language>en</language>
+
+
 
     <item>
       <title>#824: Inspiring Message</title>
@@ -12,5 +14,9 @@
       <pubDate>Mon, 27 Aug 2025 04:00:00 -0000</pubDate>
       <guid>https://hausofdecline.ca/comics/GayComics/view?comic=824</guid>
     </item>
+
+
+
+
   </channel>
 </rss>

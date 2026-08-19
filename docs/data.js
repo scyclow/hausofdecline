@@ -41,11 +41,12 @@ function csvToJson(csvString) {
   return json
 }
 
-export async function getComicData() {
+function getComicData(path) {
   // const SHEET_ID = '1f8kqjWd4XYfUt-go2lsT-3-_Ex6fVeAKwVjSOvEF52g';
 
   // return fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`)
-  return fetch(`/GayComicsMetadata.csv`)
+
+  return fetch(path)
     .then(res => res.text())
     .then(csv => {
       return csvToJson(csv)
